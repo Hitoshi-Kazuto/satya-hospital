@@ -1,0 +1,15 @@
+import type { ReactNode } from "react";
+import { Header } from "./Header";
+import { Footer } from "./Footer";
+import { FloatingActions } from "./FloatingActions";
+
+export function SiteLayout({ children }: { children: ReactNode }) {
+  return (
+    <div className="min-h-dvh bg-background text-foreground">
+      <Header />
+      <main>{children}</main>
+      <Footer />
+      <FloatingActions />
+    </div>
+  );
+}
