@@ -1,17 +1,30 @@
-import { Link } from "@tanstack/react-router";
-import logoAsset from "@/assets/satya-logo.png.asset.json";
+import { Link } from "react-router-dom";
+import logoImg from "@/assets/logo.jpeg";
 
-export function Logo({ compact = false }: { compact?: boolean }) {
+export function Logo({ inverted = false }: { inverted?: boolean }) {
   return (
-    <Link to="/" className="group flex items-center gap-3" aria-label="Satya Hospital home">
+    <Link to="/" className="flex items-center gap-3" aria-label="Satya Hospital home">
       <img
-        src={logoAsset.url}
-        alt="Satya Hospital — Trauma & Maternity Center"
-        className="h-10 w-auto shrink-0 sm:h-12"
+        src={logoImg}
+        alt="Satya Hospital"
+        className="h-12 w-auto shrink-0 rounded-lg object-contain"
       />
-      {!compact && (
-        <span className="sr-only">Satya Hospital — Trauma &amp; Maternity Center</span>
-      )}
+      <span className="leading-tight">
+        <span
+          className={`block font-display text-base font-semibold tracking-tight ${
+            inverted ? "text-white" : "text-foreground"
+          }`}
+        >
+          Satya Hospital
+        </span>
+        <span
+          className={`block text-[10px] font-medium uppercase tracking-[0.18em] ${
+            inverted ? "text-white/60" : "text-muted-foreground"
+          }`}
+        >
+          Trauma &amp; Maternity Center
+        </span>
+      </span>
     </Link>
   );
 }

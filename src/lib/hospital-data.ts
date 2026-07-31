@@ -1,21 +1,191 @@
 import {
-  Activity, Baby, Bone, Brain, Ear, HeartPulse, Microscope, Scissors,
-  Smile, Sparkles, Stethoscope, TestTube,
+  Activity,
+  Baby,
+  Bone,
+  Brain,
+  Dna,
+  Ear,
+  HeartPulse,
+  Microscope,
+  Pill,
+  Scissors,
+  ShieldPlus,
+  Smile,
+  Sparkles,
+  Stethoscope,
+  TestTube,
+  Ambulance,
+  Building2,
+  Syringe,
 } from "lucide-react";
 
 export const departments = [
-  { name: "Orthopaedics", icon: Bone, desc: "Joint, spine and bone care with modern surgical precision." },
-  { name: "Trauma Care", icon: Activity, desc: "24×7 emergency trauma response and stabilization." },
-  { name: "Joint Replacement", icon: Sparkles, desc: "Advanced knee, hip and shoulder replacement." },
-  { name: "Obstetrics & Gynaecology", icon: Baby, desc: "Compassionate maternity and women's health." },
-  { name: "Infertility", icon: HeartPulse, desc: "Personalised fertility evaluation and treatment." },
-  { name: "Neurosurgery", icon: Brain, desc: "Precision brain and spine surgical care." },
-  { name: "Laparoscopic Surgery", icon: Scissors, desc: "Minimally invasive surgical procedures." },
-  { name: "Paediatrics", icon: Smile, desc: "Complete care for infants, children and teens." },
-  { name: "ENT", icon: Ear, desc: "Ear, nose and throat expertise for all ages." },
-  { name: "Dentistry", icon: Smile, desc: "Preventive, cosmetic and surgical dentistry." },
-  { name: "Diagnostics", icon: Microscope, desc: "Digital imaging and precise pathology labs." },
-  { name: "Physiotherapy", icon: Stethoscope, desc: "Recovery-focused rehab and pain management." },
+  {
+    name: "Orthopaedics",
+    icon: Bone,
+    desc: "Joint, spine and bone conditions, including replacement surgery.",
+    slug: "orthopedics",
+  },
+  {
+    name: "Trauma Care",
+    icon: Activity,
+    desc: "24×7 emergency response for accidents and injuries.",
+    slug: "orthopedics",
+  },
+  {
+    name: "Joint Replacement",
+    icon: Sparkles,
+    desc: "Knee, hip and shoulder replacement surgery.",
+    slug: "orthopedics",
+  },
+  {
+    name: "Obstetrics & Gynaecology",
+    icon: Baby,
+    desc: "Maternity, gynaecology and women's health.",
+    slug: "gynecology-obstetrics",
+  },
+  {
+    name: "Infertility",
+    icon: Dna,
+    desc: "Fertility evaluation, treatment and counselling.",
+    slug: "gynecology-obstetrics",
+  },
+  {
+    name: "General Surgery",
+    icon: Scissors,
+    desc: "General and laparoscopic surgery for common conditions.",
+    slug: "general-surgery",
+  },
+  {
+    name: "Neurosurgery",
+    icon: Brain,
+    desc: "Surgical treatment of brain and spine conditions.",
+    slug: "neuro-surgery",
+  },
+  {
+    name: "ENT",
+    icon: Ear,
+    desc: "Ear, nose and throat care for children and adults.",
+    slug: "ent",
+  },
+  {
+    name: "Laparoscopic Surgery",
+    icon: Syringe,
+    desc: "Keyhole surgery with faster recovery.",
+    slug: "general-surgery",
+  },
+  {
+    name: "Paediatrics",
+    icon: Smile,
+    desc: "Medical and surgical care for children.",
+    slug: "general-surgery",
+  },
+  {
+    name: "Dentistry",
+    icon: Smile,
+    desc: "Preventive, restorative and surgical dental care.",
+    slug: "services",
+  },
+  {
+    name: "Physiotherapy",
+    icon: Stethoscope,
+    desc: "Rehabilitation and pain management after surgery and injury.",
+    slug: "orthopedics",
+  },
+] as const;
+
+export const services = [
+  {
+    name: "Ambulance Service",
+    icon: Ambulance,
+    desc: "Rapid-response ambulance and patient transport, available round the clock.",
+    points: ["24×7 availability", "Trained paramedics", "Emergency stabilization on board"],
+  },
+  {
+    name: "24×7 Emergency Care",
+    icon: Activity,
+    desc: "Round-the-clock emergency department for trauma, medical and surgical emergencies.",
+    points: ["Rapid triage", "Modular OTs on standby", "In-house ICU support"],
+  },
+  {
+    name: "Modular Operation Theatre",
+    icon: Sparkles,
+    desc: "HEPA-filtered, laminar-flow operation theatres designed for zero-infection surgery.",
+    points: ["Laminar airflow", "C-Arm imaging", "Advanced anaesthesia"],
+  },
+  {
+    name: "In-house Pharmacy",
+    icon: Pill,
+    desc: "Fully stocked pharmacy within the campus, open during hospital hours.",
+    points: ["Imported & standard medicines", "Discharge medications", "Medical consumables"],
+  },
+  {
+    name: "Diagnostics & Pathology",
+    icon: Microscope,
+    desc: "Digital X-Ray, ultrasound and a precise in-house pathology laboratory.",
+    points: ["Digital imaging", "Same-day reports", "Pre-operative workup"],
+  },
+  {
+    name: "Rehabilitation & Physiotherapy",
+    icon: HeartPulse,
+    desc: "Recovery-focused physiotherapy and rehab programmes after surgery and injury.",
+    points: ["Post-surgical rehab", "Sports injury recovery", "Pain management"],
+  },
+  {
+    name: "Appointment Booking",
+    icon: Stethoscope,
+    desc: "Book a physical or video consultation with a senior specialist in minutes.",
+    points: ["Online booking", "Video consults", "WhatsApp support"],
+  },
+  {
+    name: "Blood Bank Support",
+    icon: ShieldPlus,
+    desc: "Tie-up with licensed blood banks for timely blood and component support.",
+    points: ["Emergency supply", "Component availability", "Pre-surgical arrangement"],
+  },
+] as const;
+
+export const infrastructure = [
+  {
+    title: "Modular Operation Theatres",
+    icon: Sparkles,
+    desc: "HEPA-filtered, laminar-flow modular OTs with C-Arm imaging and advanced anaesthesia workstations.",
+  },
+  {
+    title: "24×7 Emergency & ICU",
+    icon: Activity,
+    desc: "A round-the-clock emergency department, intensive care unit and central monitoring.",
+  },
+  {
+    title: "In-house Diagnostics",
+    icon: Microscope,
+    desc: "Digital X-Ray, ultrasound, pathology laboratory and pre-operative workup under one roof.",
+  },
+  {
+    title: "Physiotherapy Centre",
+    icon: HeartPulse,
+    desc: "A dedicated rehabilitation floor with structured protocols for joint, spine and sports recovery.",
+  },
+  {
+    title: "In-house Pharmacy",
+    icon: Pill,
+    desc: "A fully stocked pharmacy ensuring medicines and consumables are always at hand.",
+  },
+  {
+    title: "Labour Room & Maternity Suite",
+    icon: Baby,
+    desc: "Modern labour room, well-equipped nursery and comfortable private maternity rooms.",
+  },
+  {
+    title: "Infertility Unit",
+    icon: Dna,
+    desc: "Hormonal profiling, ultrasound-guided procedures and personalised fertility care.",
+  },
+  {
+    title: "Central Oxygen & Generator Backup",
+    icon: Building2,
+    desc: "Central oxygen supply and full generator backup to keep critical care uninterrupted.",
+  },
 ] as const;
 
 export const facilities = [
@@ -31,7 +201,9 @@ export const facilities = [
   "Digital X-Ray & Pathology",
   "Generator Backup",
   "In-house Pharmacy",
-];
+  "Ambulance Service",
+  "Blood Bank Support",
+] as const;
 
 export const equipment = [
   { name: "Modular Operation Theatre", icon: Sparkles },
@@ -42,14 +214,539 @@ export const equipment = [
   { name: "Fetal Monitor", icon: Baby },
   { name: "Phototherapy Unit", icon: Sparkles },
   { name: "Ultrasound Guided Procedures", icon: TestTube },
-];
+] as const;
 
 export const orthoTreatments = [
-  "Knee Pain", "Arthritis", "High Tibial Osteotomy", "Shoulder Surgery",
-  "Partial Knee Replacement", "Total Knee Replacement", "Hip Replacement",
-  "Sports Injury", "Broken Bones", "Club Foot", "Head Injuries", "Burns & Scalds",
-  "Physiotherapy", "Shoulder Treatments", "Knee Treatments",
+  "Knee Pain",
+  "Arthritis",
+  "High Tibial Osteotomy",
+  "Shoulder Surgery",
+  "Partial Knee Replacement",
+  "Total Knee Replacement",
+  "Hip Replacement",
+  "Sports Injury",
+  "Broken Bones",
+  "Club Foot",
+  "Head Injuries",
+  "Burns & Scalds",
+  "Physiotherapy",
+  "Shoulder Treatments",
+  "Knee Treatments",
+] as const;
+
+export type OrthoTopic = {
+  slug: string;
+  name: string;
+  tagline: string;
+  summary: string;
+  points: readonly string[];
+};
+
+export const orthoTopicGroups: { label: string; topics: OrthoTopic[] }[] = [
+  {
+    label: "Knee & Lower Limb",
+    topics: [
+      {
+        slug: "knee-pain",
+        name: "Knee Pain",
+        tagline: "Evaluation and treatment of common causes of knee pain.",
+        summary:
+          "Knee pain can arise from arthritis, ligament injuries, meniscal tears or patello-femoral problems. We begin with a precise diagnosis — clinical examination, digital X-Ray and ultrasound-guided assessment — before recommending any treatment.",
+        points: [
+          "Detailed clinical assessment",
+          "Imaging & diagnosis",
+          "Non-surgical first-line care",
+          "Surgical options when needed",
+        ],
+      },
+      {
+        slug: "arthritis-types",
+        name: "Arthritis Types",
+        tagline: "Management of osteoarthritis, inflammatory and post-trauma arthritis.",
+        summary:
+          "Arthritis of the knee and hip is managed in stages — from activity modification, physiotherapy and injections to joint-preserving and replacement surgery — based on the type and grade of arthritis.",
+        points: [
+          "Osteoarthritis grading",
+          "Inflammatory arthritis care",
+          "Injection therapy",
+          "Joint replacement planning",
+        ],
+      },
+      {
+        slug: "high-tibial-osteotomy",
+        name: "High Tibial Osteotomy",
+        tagline: "Knee realignment surgery to delay replacement.",
+        summary:
+          "HTO realigns the knee to shift weight to the healthy side of the joint — delaying or avoiding knee replacement in younger, active patients with early arthritis.",
+        points: [
+          "Ideal for early arthritis",
+          "Preserves natural joint",
+          "Structured rehab protocol",
+          "Offers years of active life",
+        ],
+      },
+      {
+        slug: "partial-knee",
+        name: "Partial Knee Replacement",
+        tagline: "Knee replacement limited to the damaged part.",
+        summary:
+          "When arthritis is confined to one compartment of the knee, a partial (unicompartmental) knee replacement preserves healthy bone and ligament — with a faster, more natural-feeling recovery.",
+        points: [
+          "Single-compartment disease",
+          "Minimal bone removal",
+          "Quicker recovery",
+          "Less post-operative pain",
+        ],
+      },
+      {
+        slug: "knee-replacement",
+        name: "Knee Replacement",
+        tagline: "Total knee replacement with early mobilisation.",
+        summary:
+          "Total knee replacement is a proven solution for advanced arthritis. Our programme combines computer-assisted planning, modern implants and a fast-track physiotherapy protocol to get patients walking early.",
+        points: [
+          "Advanced arthritis",
+          "Modern implants",
+          "Computer-assisted planning",
+          "Rapid-recovery physiotherapy",
+        ],
+      },
+      {
+        slug: "physiotherapy",
+        name: "Physiotherapy",
+        tagline: "Rehabilitation after surgery and for chronic pain.",
+        summary:
+          "Our physiotherapy centre runs structured protocols for post-surgical recovery, chronic pain, sports injuries and movement disorders — supervised by trained therapists.",
+        points: [
+          "Post-surgical rehab",
+          "Sports injury recovery",
+          "Chronic pain management",
+          "Home exercise programmes",
+        ],
+      },
+    ],
+  },
+  {
+    label: "Shoulder & Upper Limb",
+    topics: [
+      {
+        slug: "shoulder-surgery",
+        name: "Shoulder Surgery",
+        tagline: "Arthroscopic and open surgery for shoulder conditions.",
+        summary:
+          "From rotator cuff repairs and shoulder stabilization to replacement surgery, our shoulder programme pairs precise arthroscopic techniques with specialist physiotherapy for reliable outcomes.",
+        points: ["Arthroscopy", "Rotator cuff repair", "Stabilization", "Replacement surgery"],
+      },
+      {
+        slug: "club-foot",
+        name: "Club Foot",
+        tagline: "Early casting and bracing for club foot.",
+        summary:
+          "Club foot is treated with the Ponseti method — gentle serial casting and bracing — started as early as possible after birth to achieve a fully functional, plantigrade foot without surgery in most cases.",
+        points: [
+          "Ponseti method",
+          "Early start = best results",
+          "Mostly non-surgical",
+          "Long-term follow-up",
+        ],
+      },
+      {
+        slug: "hip-replacement",
+        name: "Hip Replacement",
+        tagline: "Hip replacement for arthritis and fractures.",
+        summary:
+          "Hip replacement restores pain-free mobility in patients with advanced hip arthritis or displaced neck-of-femur fractures, using modern implant designs suited to each patient's age and activity.",
+        points: [
+          "Arthritis & fracture care",
+          "Modern implant designs",
+          "Rapid mobilisation",
+          "Durable outcomes",
+        ],
+      },
+    ],
+  },
+  {
+    label: "Knee Treatments",
+    topics: [
+      {
+        slug: "knee-anatomy",
+        name: "Knee Anatomy & Function",
+        tagline: "How the knee works, explained simply.",
+        summary:
+          "A clear understanding of knee anatomy — bones, cartilage, ligaments and menisci — helps patients understand their diagnosis and the logic behind each treatment recommendation.",
+        points: [
+          "Bones & cartilage",
+          "Ligaments & menisci",
+          "Biomechanics explained",
+          "Pre-treatment education",
+        ],
+      },
+      {
+        slug: "pain-management-injections",
+        name: "Pain Management & Injections",
+        tagline: "Injections for knee pain.",
+        summary:
+          "Ultrasound-guided injections — viscosupplementation, steroids and platelet-rich plasma — deliver relief precisely to the affected tissue, bridging the gap between tablets and surgery.",
+        points: [
+          "Ultrasound-guided accuracy",
+          "Viscosupplementation",
+          "PRP therapy",
+          "Steroid injections",
+        ],
+      },
+      {
+        slug: "arthroscopy",
+        name: "Arthroscopy Surgery",
+        tagline: "Keyhole (arthroscopic) surgery of the knee.",
+        summary:
+          "Arthroscopy uses a small camera and instruments through tiny incisions to diagnose and treat meniscal tears, ligament injuries and cartilage problems with faster recovery.",
+        points: [
+          "Keyhole technique",
+          "Meniscal & ligament work",
+          "Small incisions",
+          "Rapid recovery",
+        ],
+      },
+      {
+        slug: "ligament-reconstructions",
+        name: "Ligament Reconstructions",
+        tagline: "Reconstruction of torn knee ligaments.",
+        summary:
+          "ACL, PCL and multi-ligament reconstructions restore knee stability after sports and trauma injuries, using graft techniques matched to the patient's activity level.",
+        points: [
+          "ACL & PCL reconstruction",
+          "Multi-ligament injuries",
+          "Graft choice by activity",
+          "Sport-specific rehab",
+        ],
+      },
+      {
+        slug: "joint-preserving",
+        name: "Joint Preserving Surgery",
+        tagline: "Surgery that preserves the natural knee.",
+        summary:
+          "Not every arthritic knee needs replacement. Joint-preserving procedures — osteotomy, cartilage repair and meniscal surgery — aim to keep the natural joint working for longer.",
+        points: ["Osteotomy", "Cartilage repair", "Meniscal surgery", "Delays replacement"],
+      },
+      {
+        slug: "replacement-surgery",
+        name: "Replacement Surgery",
+        tagline: "Partial and total knee replacement.",
+        summary:
+          "For end-stage arthritis, partial or total knee replacement offers durable pain relief and restored mobility with a structured rapid-recovery programme.",
+        points: [
+          "Partial & total replacement",
+          "Modern implants",
+          "Computer-assisted planning",
+          "Rapid-recovery protocol",
+        ],
+      },
+      {
+        slug: "complex-fractures",
+        name: "Complex Fractures",
+        tagline: "Management of complex fractures around the knee.",
+        summary:
+          "Complex peri-articular and multi-fragmentary fractures around the knee are treated with modern fixation principles and dedicated post-operative rehabilitation.",
+        points: [
+          "Peri-articular fractures",
+          "Modern fixation",
+          "Minimally invasive options",
+          "Structured rehab",
+        ],
+      },
+      {
+        slug: "patellofemoral",
+        name: "Instability & Patellofemoral",
+        tagline: "Care for kneecap pain and instability.",
+        summary:
+          "Patello-femoral pain and recurrent kneecap dislocations are managed with physiotherapy-first care and, where needed, targeted realignment surgery.",
+        points: [
+          "Physiotherapy-first",
+          "Realignment surgery",
+          "Recurrent dislocation care",
+          "Activity-specific return",
+        ],
+      },
+    ],
+  },
+  {
+    label: "Shoulder Treatments",
+    topics: [
+      {
+        slug: "shoulder-anatomy",
+        name: "Shoulder Anatomy & Function",
+        tagline: "How the shoulder works, explained simply.",
+        summary:
+          "The shoulder's wide range of motion comes from a complex balance of bones, the rotator cuff, capsule and tendons. Understanding this balance is the first step to lasting treatment.",
+        points: [
+          "Ball & socket design",
+          "Rotator cuff role",
+          "Capsule & tendons",
+          "Pre-treatment education",
+        ],
+      },
+      {
+        slug: "shoulder-physiotherapy",
+        name: "Specialist Physiotherapy",
+        tagline: "Physiotherapy for shoulder conditions.",
+        summary:
+          "Specialist physiotherapy is central to almost every shoulder condition — from frozen shoulder to post-surgical recovery — with progressive, supervised protocols.",
+        points: [
+          "Supervised protocols",
+          "Frozen shoulder rehab",
+          "Post-surgical recovery",
+          "Progressive loading",
+        ],
+      },
+      {
+        slug: "shoulder-pain-injections",
+        name: "Pain Management & Injections",
+        tagline: "Injections for shoulder pain.",
+        summary:
+          "Ultrasound-guided injections of the subacromial space, joint and tendons provide targeted relief in rotator cuff disease, impingement and arthritis.",
+        points: [
+          "Ultrasound-guided",
+          "Subacromial injection",
+          "Joint injection",
+          "Cuff-related pain",
+        ],
+      },
+      {
+        slug: "shoulder-arthroscopy",
+        name: "Arthroscopy",
+        tagline: "Keyhole (arthroscopic) surgery of the shoulder.",
+        summary:
+          "Shoulder arthroscopy enables rotator cuff repair, labral surgery and stabilisation through small incisions, minimising soft-tissue damage.",
+        points: [
+          "Keyhole technique",
+          "Cuff & labral surgery",
+          "Small incisions",
+          "Faster recovery",
+        ],
+      },
+      {
+        slug: "rotator-cuff",
+        name: "Rotator Cuff Tear & Impingement",
+        tagline: "Treatment of rotator cuff tears and impingement.",
+        summary:
+          "Rotator cuff tears and impingement are managed in stages — from physiotherapy and injections to arthroscopic repair — matched to tear size, age and activity.",
+        points: [
+          "Staged management",
+          "Arthroscopic repair",
+          "Partial & full tears",
+          "Cuff-specific rehab",
+        ],
+      },
+      {
+        slug: "frozen-shoulder",
+        name: "Frozen Shoulder",
+        tagline: "Treatment of frozen shoulder.",
+        summary:
+          "Frozen shoulder is managed with guided physiotherapy, injections and, when needed, manipulation or arthroscopic release to regain pain-free movement.",
+        points: [
+          "Physiotherapy-led",
+          "Injection therapy",
+          "Arthroscopic release",
+          "Patience-first approach",
+        ],
+      },
+      {
+        slug: "dislocations-instability",
+        name: "Dislocations & Instability",
+        tagline: "Treatment of recurrent shoulder dislocation.",
+        summary:
+          "Recurrent shoulder dislocations are treated with targeted strengthening first, and arthroscopic stabilisation for structural damage of the labrum and capsule.",
+        points: [
+          "Recurrent dislocation",
+          "Labral (Bankart) repair",
+          "Capsular repair",
+          "Sport-specific return",
+        ],
+      },
+      {
+        slug: "shoulder-fractures",
+        name: "Shoulder Fractures",
+        tagline: "Treatment of fractures around the shoulder.",
+        summary:
+          "Clavicle, proximal humerus and scapula fractures are treated with modern fixation principles, preserving function and enabling early rehabilitation.",
+        points: [
+          "Clavicle & humerus",
+          "Modern fixation",
+          "Minimally invasive options",
+          "Early mobilisation",
+        ],
+      },
+      {
+        slug: "shoulder-replacement",
+        name: "Replacement Surgery",
+        tagline: "Shoulder replacement for arthritis.",
+        summary:
+          "Anatomical and reverse shoulder replacements provide durable relief for advanced arthritis and complex cuff tear arthropathy.",
+        points: [
+          "Anatomical replacement",
+          "Reverse replacement",
+          "Arthritis care",
+          "Structured rehab",
+        ],
+      },
+    ],
+  },
 ];
+
+export const specialtyContent = {
+  gynecology: {
+    eyebrow: "Obstetrics & Gynaecology",
+    title: "Maternity and women's health care",
+    intro:
+      "Our gynaecology unit covers antenatal and post-natal care, high-risk pregnancy, laparoscopic gynaecology, menopause care and fertility evaluation.",
+    sections: [
+      {
+        title: "Obstetrics & Maternity",
+        points: [
+          "Antenatal & post-natal care",
+          "High-risk pregnancy management",
+          "Normal & operative delivery",
+          "Caesarean section",
+          "Labour room with fetal monitoring",
+        ],
+      },
+      {
+        title: "Gynaecology",
+        points: [
+          "Laparoscopic gynaecology",
+          "Menstrual disorder management",
+          "Fibroid & ovarian cyst surgery",
+          "Menopause care",
+          "Well-woman screening",
+        ],
+      },
+      {
+        title: "Infertility",
+        points: [
+          "Fertility evaluation & hormonal profiling",
+          "IVF counselling",
+          "Ultrasound-guided procedures",
+          "Personalised treatment plans",
+          "PCOS management",
+        ],
+      },
+    ],
+  },
+  generalSurgery: {
+    eyebrow: "General & Laparoscopic Surgery",
+    title: "General and laparoscopic surgery",
+    intro:
+      "Our surgical team treats common general surgical conditions — most through laparoscopic (keyhole) techniques, which mean smaller incisions and faster recovery.",
+    sections: [
+      {
+        title: "Laparoscopic Procedures",
+        points: [
+          "Laparoscopic cholecystectomy (gall bladder)",
+          "Laparoscopic appendicectomy",
+          "Hernia repair (open & laparoscopic)",
+          "Piles, fistula & fissure surgery",
+          "Laparoscopic diagnostic surgery",
+        ],
+      },
+      {
+        title: "General Surgery",
+        points: [
+          "Thyroid surgery",
+          "Breast lump & cyst management",
+          "Peptic ulcer & GI surgery",
+          "Minor & major wound care",
+          "Dermatology & skin procedures",
+        ],
+      },
+      {
+        title: "Paediatric Surgery Support",
+        points: [
+          "Hernia in children",
+          "Undescended testis",
+          "Circumcision",
+          "Minor paediatric procedures",
+          "Newborn surgical assessment",
+        ],
+      },
+    ],
+  },
+  ent: {
+    eyebrow: "Ear, Nose & Throat (ENT)",
+    title: "ENT care for children and adults",
+    intro:
+      "Medical and surgical treatment of the ear, nose, throat and related structures of the head and neck.",
+    sections: [
+      {
+        title: "Ear",
+        points: [
+          "Ear infections & discharge",
+          "Hearing loss evaluation",
+          "Ear micro-surgery",
+          "Wax & foreign body removal",
+          "Tinnitus management",
+        ],
+      },
+      {
+        title: "Nose & Sinus",
+        points: [
+          "Allergic rhinitis",
+          "Sinusitis (medical & surgical)",
+          "Deviated nasal septum surgery",
+          "Nasal polyps",
+          "Epistaxis (nosebleed) care",
+        ],
+      },
+      {
+        title: "Throat",
+        points: [
+          "Tonsillitis & adenoids",
+          "Snoring & sleep apnoea",
+          "Voice & hoarseness clinic",
+          "Thyroid & neck swellings",
+          "Endoscopic throat procedures",
+        ],
+      },
+    ],
+  },
+  neuro: {
+    eyebrow: "Neurosurgery",
+    title: "Brain and spine surgery",
+    intro:
+      "Our neurosurgery service treats head injuries, spinal conditions and neurosurgical emergencies using modern imaging and microsurgery.",
+    sections: [
+      {
+        title: "Brain",
+        points: [
+          "Head injury & trauma management",
+          "Cerebral haemorrhage care",
+          "Brain tumour evaluation",
+          "Hydrocephalus treatment",
+          "Neuro-critical care",
+        ],
+      },
+      {
+        title: "Spine",
+        points: [
+          "Disc prolapse (slipped disc)",
+          "Spinal stenosis",
+          "Spine trauma & fractures",
+          "Spinal fusion surgery",
+          "Cervical & lumbar radiculopathy",
+        ],
+      },
+      {
+        title: "Nerve & Peripheral",
+        points: [
+          "Carpal tunnel syndrome",
+          "Nerve entrapment disorders",
+          "Peripheral nerve injuries",
+          "Sciatica evaluation",
+          "Chronic pain interventions",
+        ],
+      },
+    ],
+  },
+} as const;
 
 export const doctors = [
   {
@@ -112,8 +809,14 @@ export const testimonials = [
 ];
 
 export const insuranceLogos = [
-  "Star Health", "HDFC Ergo", "Bajaj Allianz", "ICICI Lombard",
-  "New India", "Care Health", "TATA AIG", "Niva Bupa",
+  "Star Health",
+  "HDFC Ergo",
+  "Bajaj Allianz",
+  "ICICI Lombard",
+  "New India",
+  "Care Health",
+  "TATA AIG",
+  "Niva Bupa",
 ];
 
 export const faqs = [
@@ -138,3 +841,40 @@ export const faqs = [
     a: "Yes. Our infertility unit provides complete evaluation, hormonal profiling, ultrasound-guided procedures and personalised treatment plans.",
   },
 ];
+
+export const contactInfo = {
+  phone: "+91 512 228 2111",
+  phoneHref: "tel:+915122282111",
+  altPhone: "Reception 98389 68996",
+  email: "contact@satyahospital.com",
+  emailHref: "mailto:contact@satyahospital.com",
+  address: "HIG-1/2, 1/3, Satya Chowk, Barra 6, Kanpur, Uttar Pradesh 208027",
+  whatsapp: "https://wa.me/919838951052",
+  maps: "https://www.google.com/maps/place/Satya+Trauma+%26+Maternity+Centre/@26.4394742,80.2905691,17z/data=!3m1!4b1!4m5!3m4!1s0x399c47c3cd081a87:0x624a166e9d7bbb0a!8m2!3d26.4394694!4d80.2927578",
+};
+
+export const stats = [
+  ["30+", "Years Legacy"],
+  ["50K+", "Patients Treated"],
+  ["6", "Modular OTs"],
+  ["100%", "Cashless"],
+] as const;
+
+export const hospitalValues = [
+  {
+    title: "Senior-led Care",
+    desc: "Departments led by senior consultants who review every case.",
+  },
+  {
+    title: "Patient Safety",
+    desc: "Modular theatres, infection-control protocols and continuous monitoring.",
+  },
+  {
+    title: "Family-friendly",
+    desc: "Private rooms and staff who keep families informed.",
+  },
+  {
+    title: "Transparency",
+    desc: "Treatment plans explained in advance and itemised billing.",
+  },
+] as const;

@@ -1,21 +1,27 @@
 # Routes
 
-TanStack Start uses **file-based routing**. Every `.tsx` file in this directory
-defines a route. Do **not** create `src/pages/`, `src/routes/_app/index.tsx`, or
-`app/layout.tsx` — those are Next.js / Remix conventions. The only root layout
-is `src/routes/__root.tsx`.
+This project uses **React Router** with a central route table in `src/App.tsx`.
+Each page component lives in this `src/routes/` directory and is registered as a
+`<Route>` inside `<Routes>`.
 
-## Conventions
+## Current routes
 
-| File | URL |
-| --- | --- |
-| `index.tsx` | `/` |
-| `about.tsx` | `/about` |
-| `users/index.tsx` | `/users` |
-| `users/$id.tsx` | `/users/:id` (dynamic — bare `$`, no curly braces) |
-| `posts/{-$category}.tsx` | `/posts/:category?` (optional segment) |
-| `files/$.tsx` | `/files/*` (splat — read via `_splat` param, never `*`) |
-| `_layout.tsx` | layout route (renders children via `<Outlet />`) |
-| `__root.tsx` | app shell — wraps every page; preserve `<Outlet />` |
+| Path                     | Component              |
+| ------------------------ | ---------------------- |
+| `/`                      | `Home`                 |
+| `/about`                 | `About`                |
+| `/doctors`               | `Doctors`              |
+| `/infrastructure`        | `Infrastructure`       |
+| `/orthopedics`           | `Orthopedics`          |
+| `/services`              | `Services`             |
+| `/gynecology-obstetrics` | `GynecologyObstetrics` |
+| `/general-surgery`       | `GeneralSurgery`       |
+| `/ent`                   | `ENT`                  |
+| `/neuro-surgery`         | `NeuroSurgery`         |
+| `/appointment`           | `Appointment`          |
+| `/departments`           | `Departments`          |
+| `/facilities`            | `Facilities`           |
+| `/contact`               | `Contact`              |
+| `*`                      | `NotFound`             |
 
-`routeTree.gen.ts` is auto-generated. Don't edit it by hand.
+Add a new page by creating a component here and registering it in `src/App.tsx`.
