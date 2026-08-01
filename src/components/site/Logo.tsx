@@ -9,7 +9,7 @@ export function Logo({ inverted = false }: { inverted?: boolean }) {
         alt="Satya Hospital"
         className="h-12 w-auto shrink-0 rounded-lg object-contain"
       />
-      <span className="leading-tight">
+      <span className="hidden leading-tight sm:block">
         <span
           className={`block font-display text-base font-semibold tracking-tight ${
             inverted ? "text-white" : "text-foreground"

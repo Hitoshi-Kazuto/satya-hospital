@@ -5,9 +5,9 @@ import { PageHeader, SectionHeader } from "@/components/site/PageHeader";
 import { Reveal } from "@/components/site/Reveal";
 import { btn } from "@/components/site/buttons";
 import { equipment, facilities } from "@/lib/hospital-data";
-import facOt from "@/assets/facility-ot.jpg";
-import facReception from "@/assets/facility-reception.jpg";
-import facRoom from "@/assets/facility-room.jpg";
+import facOt from "@/assets/ot-0.jpeg";
+import facReception from "@/assets/both-doc.jpeg";
+import facRoom from "@/assets/doc-1.jpeg";
 import hero from "@/assets/hero-hospital.jpg";
 
 function Facilities() {

@@ -119,7 +119,8 @@ export function Header() {
             className="flex items-center gap-2 transition hover:text-white/80"
           >
             <Phone className="h-3.5 w-3.5" />
-            24×7 Emergency · {contactInfo.phone}
+            <span className="hidden sm:inline">24×7 Emergency · </span>
+            {contactInfo.phone}
           </a>
         </div>
       </div>
@@ -191,7 +192,7 @@ export function Header() {
               to="/appointment"
               className="inline-flex items-center gap-2 rounded-full gradient-brand px-4 py-2.5 text-sm font-semibold text-white shadow-brand transition duration-200 hover:brightness-110 sm:px-5"
             >
-              Book Appointment
+              Book <span className="hidden sm:inline">Appointment</span>
             </Link>
             <button
               onClick={() => setMobileOpen((v) => !v)}

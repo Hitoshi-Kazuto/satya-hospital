@@ -39,10 +39,10 @@ import {
   contactInfo,
 } from "@/lib/hospital-data";
 import heroImg from "@/assets/hero-hospital.jpg";
-import drAk from "@/assets/doctor-ak-agarwal.jpg";
+import drAk from "@/assets/doctor-ak-agarwal.jpeg";
 import drManisha from "@/assets/doctor-manisha-agarwal.jpg";
-import facOt from "@/assets/facility-ot.jpg";
-import facReception from "@/assets/facility-reception.jpg";
+import facOt from "@/assets/ot-0.jpeg";
+import facReception from "@/assets/both-doc.jpeg";
 
 const doctorImages: Record<string, string> = {
   "dr-ak-agarwal": drAk,
@@ -84,7 +84,7 @@ function Hero() {
         alt="Satya Trauma & Maternity Centre, Kanpur"
         className="absolute inset-0 h-full w-full object-cover"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#0b3a6b]/95 via-[#0f559f]/80 to-[#0f559f]/40" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0b3a6b]/65 via-[#0f559f]/40 to-[#0f559f]/15" />
       <div className="relative mx-auto flex min-h-[560px] max-w-7xl flex-col justify-center px-4 py-24 sm:px-6 lg:min-h-[620px] lg:px-8">
         <div className="max-w-2xl">
           <p className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[color:var(--accent-mint)]">
@@ -196,7 +196,7 @@ function About() {
           />
           <img
             src={facReception}
-            alt="Reception lobby"
+            alt="Our senior consultants"
             loading="lazy"
             className="h-44 w-full rounded-2xl object-cover shadow-elevated"
           />

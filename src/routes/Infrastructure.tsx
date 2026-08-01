@@ -5,10 +5,16 @@ import { PageHeader, SectionHeader } from "@/components/site/PageHeader";
 import { Reveal } from "@/components/site/Reveal";
 import { btn } from "@/components/site/buttons";
 import { infrastructure } from "@/lib/hospital-data";
-import facOt from "@/assets/facility-ot.jpg";
-import facReception from "@/assets/facility-reception.jpg";
-import facRoom from "@/assets/facility-room.jpg";
+import facOt from "@/assets/ot-0.jpeg";
+import facReception from "@/assets/both-doc.jpeg";
+import facRoom from "@/assets/doc-1.jpeg";
 import heroImg from "@/assets/hero-hospital.jpg";
+import ot1 from "@/assets/ot-1.jpeg";
+import ot2 from "@/assets/ot-2.jpeg";
+import ot3 from "@/assets/ot-3.jpeg";
+import ot4 from "@/assets/ot-4.jpeg";
+import ot5 from "@/assets/ot-5.jpeg";
+import ot6 from "@/assets/ot-6.jpeg";
 
 function Infrastructure() {
   return (
@@ -55,6 +61,32 @@ function Infrastructure() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+        <Reveal>
+          <SectionHeader
+            eyebrow="Operation Theatres"
+            title="Our modular operation theatres"
+            intro="HEPA-filtered, laminar-flow theatres designed for zero-infection surgery."
+          />
+        </Reveal>
+        <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">
+          {[facOt, ot1, ot2, ot3, ot4, ot5, ot6].map((s, i) => (
+            <Reveal
+              key={i}
+              delay={Math.min(i, 6) * 60}
+              className={i === 0 ? "col-span-2 row-span-2" : ""}
+            >
+              <img
+                src={s}
+                alt="Modular operation theatre"
+                loading="lazy"
+                className="h-full w-full rounded-2xl object-cover shadow-elevated"
+              />
+            </Reveal>
+          ))}
         </div>
       </section>
 

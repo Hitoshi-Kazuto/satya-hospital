@@ -5,9 +5,9 @@ import { PageHeader, SectionHeader } from "@/components/site/PageHeader";
 import { Reveal } from "@/components/site/Reveal";
 import { btn } from "@/components/site/buttons";
 import { doctors, hospitalValues, stats } from "@/lib/hospital-data";
-import facOt from "@/assets/facility-ot.jpg";
-import facReception from "@/assets/facility-reception.jpg";
-import facRoom from "@/assets/facility-room.jpg";
+import facOt from "@/assets/ot-0.jpeg";
+import facReception from "@/assets/both-doc.jpeg";
+import facRoom from "@/assets/doc-1.jpeg";
 import heroImg from "@/assets/hero-hospital.jpg";
 
 function About() {
@@ -59,7 +59,7 @@ function About() {
             />
             <img
               src={facReception}
-              alt="Reception lobby"
+              alt="Our senior consultants"
               loading="lazy"
               className="h-48 w-full rounded-3xl object-cover shadow-elevated"
             />
@@ -187,7 +187,7 @@ function About() {
           <div className="grid gap-6 md:grid-cols-3">
             <img
               src={facRoom}
-              alt="Premium patient room"
+              alt="Our consultants"
               loading="lazy"
               className="h-56 w-full rounded-2xl object-cover shadow-elevated"
             />

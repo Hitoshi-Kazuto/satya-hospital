@@ -5,7 +5,7 @@ import { PageHeader } from "@/components/site/PageHeader";
 import { Reveal } from "@/components/site/Reveal";
 import { btn } from "@/components/site/buttons";
 import { doctors, contactInfo, stats } from "@/lib/hospital-data";
-import drAk from "@/assets/doctor-ak-agarwal.jpg";
+import drAk from "@/assets/doctor-ak-agarwal.jpeg";
 import drManisha from "@/assets/doctor-manisha-agarwal.jpg";
 
 const images: Record<string, string> = {
