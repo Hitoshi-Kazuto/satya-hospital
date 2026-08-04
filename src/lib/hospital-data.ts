@@ -599,6 +599,55 @@ export const orthoTopicGroups: { label: string; topics: OrthoTopic[] }[] = [
   },
 ];
 
+export const infertilityServices: {
+  slug: string;
+  name: string;
+  tagline: string;
+  summary: string;
+  points: readonly string[];
+}[] = [
+  {
+    slug: "iui",
+    name: "Intrauterine Insemination (IUI)",
+    tagline: "OPD-based, minimally invasive fertility treatment.",
+    summary:
+      "IUI places carefully washed sperm directly into the uterus at the time of ovulation. It is a simple, OPD-based procedure with high success in carefully selected couples — often the first treatment tried before advanced ART.",
+    points: ["OPD-based, minimally invasive", "High success in selected cases"],
+  },
+  {
+    slug: "iui-lab",
+    name: "IUI Lab – World Class",
+    tagline: "State-of-the-art IUI laboratory.",
+    summary:
+      "Our IUI laboratory is equipped with leading international equipment for precise sperm preparation and insemination — reducing handling time and improving outcomes for every cycle.",
+    points: ["Leading international equipment", "Precision for better results"],
+  },
+  {
+    slug: "andrology-lab",
+    name: "Andrology Lab – In-house",
+    tagline: "Complete male fertility evaluation in-house.",
+    summary:
+      "An in-house andrology laboratory performs complete semen analysis and male fertility assessment, so couples get timely, accurate results and a single, coordinated treatment plan.",
+    points: ["Complete male infertility evaluation", "Timely, accurate results"],
+  },
+  {
+    slug: "semen-wash",
+    name: "Semen Wash – Available In-house",
+    tagline: "Advanced in-house semen processing.",
+    summary:
+      "Semen washing uses advanced processing techniques to concentrate healthy, motile sperm while removing debris — improving the chances of conception in both IUI and IVF cycles.",
+    points: ["Advanced processing techniques", "Better chances of conception"],
+  },
+  {
+    slug: "comprehensive-womens-care",
+    name: "Comprehensive Women's Care",
+    tagline: "Complete women's health from adolescence to menopause.",
+    summary:
+      "Beyond fertility, Dr. Manisha Agrawal provides personalized, compassionate gynaecological care across every life stage — from adolescent concerns to menopause and beyond.",
+    points: ["From adolescence to menopause", "Personalized & compassionate care"],
+  },
+];
+
 export const specialtyContent = {
   gynecology: {
     eyebrow: "Obstetrics & Gynaecology",
@@ -645,34 +694,24 @@ export const specialtyContent = {
       "Dr. Manisha Agrawal leads a dedicated infertility unit focused on complete fertility evaluation, counselling and personalised treatment plans for couples trying to conceive.",
     sections: [
       {
-        title: "Fertility Evaluation",
-        points: [
-          "Complete couple evaluation & counselling",
-          "Hormonal profiling & ovulation assessment",
-          "Ultrasound-guided follicular monitoring",
-          "HSG & tubal patency assessment",
-          "Semen analysis & male partner evaluation",
-        ],
+        title: "Intrauterine Insemination (IUI)",
+        points: ["OPD-based, minimally invasive", "High success in selected cases"],
       },
       {
-        title: "Treatment & Procedures",
-        points: [
-          "Ovulation induction & timed intercourse",
-          "PCOS / PCOD management",
-          "Intrauterine Insemination (IUI)",
-          "IVF & IVF counselling and support",
-          "Personalised treatment plans",
-        ],
+        title: "IUI Lab – World Class",
+        points: ["Leading international equipment", "Precision for better results"],
       },
       {
-        title: "Women's Health Support",
-        points: [
-          "Endometriosis care",
-          "Hormonal & menopause support",
-          "Recurrent pregnancy loss evaluation",
-          "Preconception health and wellness",
-          "Gentle, compassionate guidance throughout",
-        ],
+        title: "Andrology Lab – In-house",
+        points: ["Complete male infertility evaluation", "Timely, accurate results"],
+      },
+      {
+        title: "Semen Wash – Available In-house",
+        points: ["Advanced processing techniques", "Better chances of conception"],
+      },
+      {
+        title: "Comprehensive Women's Care",
+        points: ["From adolescence to menopause", "Personalized & compassionate care"],
       },
     ],
   },
@@ -754,7 +793,17 @@ export const specialtyContent = {
   },
 } as const;
 
-export const doctors = [
+export type Doctor = {
+  slug: string;
+  name: string;
+  qualifications: string;
+  specialty: string;
+  experience?: string;
+  focus?: readonly string[];
+  achievements?: readonly string[];
+};
+
+export const doctors: Doctor[] = [
   {
     slug: "dr-ak-agarwal",
     name: "Dr. A.K. Agrawal",
@@ -794,7 +843,19 @@ export const doctors = [
       "Trusted by families across UP",
     ],
   },
-] as const;
+  {
+    slug: "dr-gaurav",
+    name: "Dr. Gaurav",
+    qualifications: "MBBS, MS",
+    specialty: "Junior Orthopedic Consultant",
+    focus: [
+      "Orthopedic Trauma & Fracture Care",
+      "Joint Replacement & Arthroscopy Support",
+      "Outpatient Orthopedic Consultation",
+      "Post-surgical Recovery & Rehabilitation",
+    ],
+  },
+];
 
 export const testimonials = [
   {

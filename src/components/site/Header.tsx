@@ -38,7 +38,13 @@ const NAV = [
   {
     label: "Infertility",
     to: "/infertility",
-    children: null,
+    children: [
+      { label: "Intrauterine Insemination (IUI)", to: "/infertility#iui" },
+      { label: "IUI Lab – World Class", to: "/infertility#iui-lab" },
+      { label: "Andrology Lab – In-house", to: "/infertility#andrology-lab" },
+      { label: "Semen Wash – In-house", to: "/infertility#semen-wash" },
+      { label: "Comprehensive Women's Care", to: "/infertility#comprehensive-womens-care" },
+    ],
   },
   {
     label: "Services",

@@ -157,11 +157,13 @@ function About() {
                   {d.name}
                 </h3>
                 <p className="mt-1 text-sm text-muted-foreground">{d.qualifications}</p>
-                <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-[color:var(--brand-soft)] px-3 py-1 text-xs font-semibold text-[color:var(--brand)]">
-                  {d.experience} experience
-                </div>
+                {d.experience && (
+                  <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-[color:var(--brand-soft)] px-3 py-1 text-xs font-semibold text-[color:var(--brand)]">
+                    {d.experience} experience
+                  </div>
+                )}
                 <ul className="mt-5 space-y-2 text-sm text-foreground/80">
-                  {d.focus.map((f) => (
+                  {(d.focus ?? []).map((f) => (
                     <li key={f} className="flex items-start gap-2">
                       <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[color:var(--brand)]" />
                       {f}

@@ -40,12 +40,14 @@ import {
 import heroImg from "@/assets/hero-hospital.jpg";
 import drAk from "@/assets/doctor-ak-agarwal.jpeg";
 import drManisha from "@/assets/doctor-manisha-agarwal.jpg";
+import drGaurav from "@/assets/doctor-gaurav.jpeg";
 import facOt from "@/assets/ot-0.jpeg";
 import facReception from "@/assets/both-doc.jpeg";
 
 const doctorImages: Record<string, string> = {
   "dr-ak-agarwal": drAk,
   "dr-manisha-agarwal": drManisha,
+  "dr-gaurav": drGaurav,
 };
 
 const MAPS_EMBED =
@@ -289,12 +291,14 @@ function Doctors() {
                     {d.name}
                   </h3>
                   <p className="text-sm text-muted-foreground">{d.qualifications}</p>
-                  <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-[color:var(--brand-soft)] px-3 py-1 text-xs font-semibold text-[color:var(--brand)]">
-                    {d.experience} experience
-                  </div>
+                  {d.experience && (
+                    <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-[color:var(--brand-soft)] px-3 py-1 text-xs font-semibold text-[color:var(--brand)]">
+                      {d.experience} experience
+                    </div>
+                  )}
 
                   <ul className="mt-5 space-y-2 text-sm text-foreground/80">
-                    {d.focus.map((f) => (
+                    {(d.focus ?? []).map((f) => (
                       <li key={f} className="flex items-start gap-2">
                         <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[color:var(--brand)]" />
                         {f}

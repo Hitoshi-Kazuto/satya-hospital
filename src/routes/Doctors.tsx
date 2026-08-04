@@ -7,10 +7,12 @@ import { btn } from "@/components/site/buttons";
 import { doctors, contactInfo, stats } from "@/lib/hospital-data";
 import drAk from "@/assets/doctor-ak-agarwal.jpeg";
 import drManisha from "@/assets/doctor-manisha-agarwal.jpg";
+import drGaurav from "@/assets/doctor-gaurav.jpeg";
 
 const images: Record<string, string> = {
   "dr-ak-agarwal": drAk,
   "dr-manisha-agarwal": drManisha,
+  "dr-gaurav": drGaurav,
 };
 
 function Doctors() {
@@ -55,36 +57,41 @@ function Doctors() {
                   {d.name}
                 </h2>
                 <p className="text-sm text-muted-foreground">
-                  {d.qualifications} · {d.experience} experience
+                  {d.qualifications}
+                  {d.experience ? ` · ${d.experience} experience` : ""}
                 </p>
 
                 <div className="mt-6 grid gap-6 sm:grid-cols-2">
-                  <div>
-                    <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                      Focus areas
-                    </h3>
-                    <ul className="mt-3 space-y-2 text-sm">
-                      {d.focus.map((f) => (
-                        <li key={f} className="flex items-start gap-2">
-                          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[color:var(--brand)]" />
-                          {f}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                      Achievements
-                    </h3>
-                    <ul className="mt-3 space-y-2 text-sm">
-                      {d.achievements.map((a) => (
-                        <li key={a} className="flex items-start gap-2">
-                          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[color:var(--brand)]" />
-                          {a}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  {d.focus && (
+                    <div>
+                      <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                        Focus areas
+                      </h3>
+                      <ul className="mt-3 space-y-2 text-sm">
+                        {d.focus.map((f) => (
+                          <li key={f} className="flex items-start gap-2">
+                            <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[color:var(--brand)]" />
+                            {f}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  {d.achievements && (
+                    <div>
+                      <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                        Achievements
+                      </h3>
+                      <ul className="mt-3 space-y-2 text-sm">
+                        {d.achievements.map((a) => (
+                          <li key={a} className="flex items-start gap-2">
+                            <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[color:var(--brand)]" />
+                            {a}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
 
                 <Link to="/appointment" className={`${btn.primary} mt-8 inline-flex`}>
