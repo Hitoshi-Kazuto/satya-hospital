@@ -137,15 +137,15 @@ function Services() {
                 </h2>
                 <p className="mt-4 max-w-xl text-muted-foreground">
                   Beyond our core orthopaedic and maternity services, Satya Hospital runs focused
-                  speciality departments for general surgery, ENT and neurosurgery.
+                  speciality departments for general surgery and ENT.
                 </p>
                 <div className="mt-8 space-y-3">
                   {[
                     { label: "Orthopedics & Joint Replacement", to: "/orthopedics" },
+                    { label: "Physiotherapy", to: "/orthopedics#physiotherapy" },
                     { label: "Gynecology & Obstetrics", to: "/gynecology-obstetrics" },
                     { label: "General Surgery", to: "/general-surgery" },
                     { label: "ENT", to: "/ent" },
-                    { label: "Neuro Surgery", to: "/neuro-surgery" },
                   ].map((s) => (
                     <Link
                       key={s.label}

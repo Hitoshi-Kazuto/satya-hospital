@@ -11,7 +11,6 @@ import {
   HeartPulse,
   Mail,
   MapPin,
-  Navigation,
   Phone,
   PhoneCall,
   ShieldCheck,
@@ -110,7 +109,7 @@ function Hero() {
               rel="noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white transition duration-200 hover:bg-white/20"
             >
-              <Navigation className="h-4 w-4" /> Get Directions
+              <MapPin className="h-4 w-4" /> Get Directions
             </a>
             <a
               href={contactInfo.phoneHref}
@@ -148,7 +147,7 @@ function StatsBar() {
 /* ---------- ABOUT ---------- */
 function About() {
   const facts = [
-    "Six modular operation theatres",
+    "Three modular operation theatres",
     "24×7 emergency and ICU",
     "In-house diagnostics and pharmacy",
     "Cashless insurance and TPA",
@@ -163,7 +162,7 @@ function About() {
           />
           <p className="mt-5 leading-relaxed text-muted-foreground">
             Satya Hospital was set up in Barra 6, Kanpur in 1995 with a focus on orthopaedics,
-            trauma and maternity care. The hospital now has six modular operation theatres, a 24×7
+            trauma and maternity care. The hospital now has three modular operation theatres, a 24×7
             emergency department, in-house diagnostics and a dedicated physiotherapy floor.
           </p>
           <p className="mt-4 leading-relaxed text-muted-foreground">
@@ -221,7 +220,7 @@ function Specialities() {
           <SectionHeader
             eyebrow="Specialities"
             title="Speciality departments"
-            intro="Orthopaedics, obstetrics & gynaecology, general surgery, ENT and neurosurgery — each led by senior consultants."
+            intro="Orthopaedics, physiotherapy, obstetrics & gynaecology, general surgery and ENT — each led by senior consultants."
           />
         </Reveal>
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -263,7 +262,7 @@ function Doctors() {
         <SectionHeader
           eyebrow="Our Doctors"
           title="Senior consultants"
-          intro="Dr. A.K. Agarwal leads orthopaedics and joint replacement. Dr. Manisha Agarwal leads obstetrics, gynaecology and infertility."
+          intro="Dr. A.K. Agrawal leads orthopaedics and joint replacement. Dr. Manisha Agrawal leads obstetrics, gynaecology and infertility."
         />
       </Reveal>
 
@@ -368,7 +367,7 @@ function Technology() {
           <SectionHeader
             eyebrow="Technology"
             title="Equipment we use"
-            intro="Imaging, surgical and monitoring systems used by our surgeons and teams."
+            intro="Imaging, surgical and monitoring systems used by our surgeons and teams — including rare Robotic Knee Resurfacing for Best 360° Knee Care."
           />
         </Reveal>
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -618,7 +617,7 @@ function Resources() {
     },
     {
       icon: HeartPulse,
-      title: "Physiotherapy & Rehab",
+      title: "Physiotherapy & Recovery",
       desc: "Recovery protocols and home exercises to continue after discharge.",
       to: "/orthopedics#physiotherapy",
     },
@@ -725,14 +724,14 @@ function Visit() {
                       Hospital Hours
                     </dt>
                     <dd className="font-semibold text-foreground">
-                      OPD: 9:00 AM – 8:00 PM · Emergency &amp; Pharmacy: 24×7
+                      OPD: 10:00 AM – 3:00 PM · Emergency &amp; Pharmacy: 24×7
                     </dd>
                   </div>
                 </div>
               </dl>
               <div className="mt-7 flex flex-wrap gap-3">
                 <a href={contactInfo.maps} target="_blank" rel="noreferrer" className={btn.primary}>
-                  <Navigation className="h-4 w-4" /> Get Directions
+                  <MapPin className="h-4 w-4" /> Get Directions
                 </a>
                 <a href={contactInfo.phoneHref} className={btn.secondary}>
                   <Phone className="h-4 w-4" /> Call 24×7
@@ -772,7 +771,7 @@ function CTA() {
               </h2>
               <p className="mt-3 max-w-lg leading-relaxed text-white/80">
                 For trauma and maternity emergencies, call the helpline any time. For consultations,
-                book online or call during OPD hours (9 AM – 8 PM).
+                book online or call during OPD hours (10 AM – 3 PM).
               </p>
             </div>
             <div className="flex flex-wrap gap-3 lg:justify-end">

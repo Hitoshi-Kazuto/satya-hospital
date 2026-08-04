@@ -108,7 +108,7 @@ function Doctors() {
                   Book a consultation with a senior consultant
                 </h2>
                 <p className="mt-3 max-w-lg leading-relaxed text-white/80">
-                  Physical and video consultations available. OPD hours are 9:00 AM – 8:00 PM, and
+                  Physical and video consultations available. OPD hours are 10:00 AM – 3:00 PM, and
                   the emergency department runs 24×7.
                 </p>
               </div>

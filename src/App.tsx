@@ -10,12 +10,13 @@ import Services from "./routes/Services";
 import GynecologyObstetrics from "./routes/GynecologyObstetrics";
 import GeneralSurgery from "./routes/GeneralSurgery";
 import ENT from "./routes/ENT";
-import NeuroSurgery from "./routes/NeuroSurgery";
 import Appointment from "./routes/Appointment";
 import Departments from "./routes/Departments";
 import Facilities from "./routes/Facilities";
 import Contact from "./routes/Contact";
 import NotFound from "./routes/NotFound";
+import Infertility from "./routes/Infertility";
+import { ScrollToTop } from "@/components/site/ScrollToTop";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -30,6 +31,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -38,9 +40,9 @@ function App() {
           <Route path="/orthopedics" element={<Orthopedics />} />
           <Route path="/services" element={<Services />} />
           <Route path="/gynecology-obstetrics" element={<GynecologyObstetrics />} />
+          <Route path="/infertility" element={<Infertility />} />
           <Route path="/general-surgery" element={<GeneralSurgery />} />
           <Route path="/ent" element={<ENT />} />
-          <Route path="/neuro-surgery" element={<NeuroSurgery />} />
           <Route path="/appointment" element={<Appointment />} />
           <Route path="/departments" element={<Departments />} />
           <Route path="/facilities" element={<Facilities />} />

@@ -17,7 +17,6 @@ Each page component lives in this `src/routes/` directory and is registered as a
 | `/gynecology-obstetrics` | `GynecologyObstetrics` |
 | `/general-surgery`       | `GeneralSurgery`       |
 | `/ent`                   | `ENT`                  |
-| `/neuro-surgery`         | `NeuroSurgery`         |
 | `/appointment`           | `Appointment`          |
 | `/departments`           | `Departments`          |
 | `/facilities`            | `Facilities`           |

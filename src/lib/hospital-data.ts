@@ -2,7 +2,6 @@ import {
   Activity,
   Baby,
   Bone,
-  Brain,
   Dna,
   Ear,
   HeartPulse,
@@ -17,6 +16,8 @@ import {
   Ambulance,
   Building2,
   Syringe,
+  Cpu,
+  Crosshair,
 } from "lucide-react";
 
 export const departments = [
@@ -39,6 +40,12 @@ export const departments = [
     slug: "orthopedics",
   },
   {
+    name: "Physiotherapy",
+    icon: Stethoscope,
+    desc: "Rehabilitation and pain management after surgery and injury.",
+    slug: "orthopedics",
+  },
+  {
     name: "Obstetrics & Gynaecology",
     icon: Baby,
     desc: "Maternity, gynaecology and women's health.",
@@ -55,18 +62,6 @@ export const departments = [
     icon: Scissors,
     desc: "General and laparoscopic surgery for common conditions.",
     slug: "general-surgery",
-  },
-  {
-    name: "Neurosurgery",
-    icon: Brain,
-    desc: "Surgical treatment of brain and spine conditions.",
-    slug: "neuro-surgery",
-  },
-  {
-    name: "ENT",
-    icon: Ear,
-    desc: "Ear, nose and throat care for children and adults.",
-    slug: "ent",
   },
   {
     name: "Laparoscopic Surgery",
@@ -87,10 +82,10 @@ export const departments = [
     slug: "services",
   },
   {
-    name: "Physiotherapy",
-    icon: Stethoscope,
-    desc: "Rehabilitation and pain management after surgery and injury.",
-    slug: "orthopedics",
+    name: "ENT",
+    icon: Ear,
+    desc: "Ear, nose and throat care for children and adults.",
+    slug: "ent",
   },
 ] as const;
 
@@ -126,10 +121,15 @@ export const services = [
     points: ["Digital imaging", "Same-day reports", "Pre-operative workup"],
   },
   {
-    name: "Rehabilitation & Physiotherapy",
-    icon: HeartPulse,
-    desc: "Recovery-focused physiotherapy and rehab programmes after surgery and injury.",
-    points: ["Post-surgical rehab", "Sports injury recovery", "Pain management"],
+    name: "Arthroscopy & Ligament Surgery",
+    icon: Crosshair,
+    desc: "Minimally invasive (keyhole) arthroscopy and ligament surgery for precise, faster-recovery joint care.",
+    points: [
+      "ACL & ligament reconstruction",
+      "Meniscal repair",
+      "Small incisions",
+      "Rapid recovery",
+    ],
   },
   {
     name: "Appointment Booking",
@@ -164,7 +164,7 @@ export const infrastructure = [
   {
     title: "Physiotherapy Centre",
     icon: HeartPulse,
-    desc: "A dedicated rehabilitation floor with structured protocols for joint, spine and sports recovery.",
+    desc: "A dedicated rehabilitation floor with structured protocols for joint, spine and ligament recovery.",
   },
   {
     title: "In-house Pharmacy",
@@ -189,10 +189,13 @@ export const infrastructure = [
 ] as const;
 
 export const facilities = [
-  "24×7 Emergency",
-  "Modular Operation Theatre",
-  "Joint Replacement Centre",
+  "Orthopaedics & Joint Replacement Centre",
+  "Robotic Knee Surgery",
+  "Arthroscopy & Ligament Surgery",
   "Advanced Physiotherapy",
+  "Modular Operation Theatre",
+  "24×7 Emergency",
+  "Joint Replacement Centre",
   "Cashless Insurance & TPA",
   "Labour Room",
   "Infertility Unit",
@@ -206,7 +209,9 @@ export const facilities = [
 ] as const;
 
 export const equipment = [
+  { name: "Robotic Knee Resurfacing System", icon: Cpu },
   { name: "Modular Operation Theatre", icon: Sparkles },
+  { name: "Arthroscopy System", icon: Crosshair },
   { name: "C-Arm Imaging", icon: Activity },
   { name: "Digital X-Ray", icon: Microscope },
   { name: "Laparoscopy System", icon: Scissors },
@@ -219,16 +224,17 @@ export const equipment = [
 export const orthoTreatments = [
   "Knee Pain",
   "Arthritis",
+  "Spondylitis",
+  "Back Ache",
+  "Sprain",
   "High Tibial Osteotomy",
   "Shoulder Surgery",
   "Partial Knee Replacement",
   "Total Knee Replacement",
   "Hip Replacement",
-  "Sports Injury",
+  "Ligament Injuries",
   "Broken Bones",
   "Club Foot",
-  "Head Injuries",
-  "Burns & Scalds",
   "Physiotherapy",
   "Shoulder Treatments",
   "Knee Treatments",
@@ -366,7 +372,7 @@ export const orthoTopicGroups: { label: string; topics: OrthoTopic[] }[] = [
     ],
   },
   {
-    label: "Knee Treatments",
+    label: "360 Degree Knee Care",
     topics: [
       {
         slug: "knee-anatomy",
@@ -632,6 +638,44 @@ export const specialtyContent = {
       },
     ],
   },
+  infertility: {
+    eyebrow: "Infertility & Fertility Care",
+    title: "Comprehensive infertility care by our lady consultant",
+    intro:
+      "Dr. Manisha Agrawal leads a dedicated infertility unit focused on complete fertility evaluation, counselling and personalised treatment plans for couples trying to conceive.",
+    sections: [
+      {
+        title: "Fertility Evaluation",
+        points: [
+          "Complete couple evaluation & counselling",
+          "Hormonal profiling & ovulation assessment",
+          "Ultrasound-guided follicular monitoring",
+          "HSG & tubal patency assessment",
+          "Semen analysis & male partner evaluation",
+        ],
+      },
+      {
+        title: "Treatment & Procedures",
+        points: [
+          "Ovulation induction & timed intercourse",
+          "PCOS / PCOD management",
+          "Intrauterine Insemination (IUI)",
+          "IVF & IVF counselling and support",
+          "Personalised treatment plans",
+        ],
+      },
+      {
+        title: "Women's Health Support",
+        points: [
+          "Endometriosis care",
+          "Hormonal & menopause support",
+          "Recurrent pregnancy loss evaluation",
+          "Preconception health and wellness",
+          "Gentle, compassionate guidance throughout",
+        ],
+      },
+    ],
+  },
   generalSurgery: {
     eyebrow: "General & Laparoscopic Surgery",
     title: "General and laparoscopic surgery",
@@ -708,56 +752,19 @@ export const specialtyContent = {
       },
     ],
   },
-  neuro: {
-    eyebrow: "Neurosurgery",
-    title: "Brain and spine surgery",
-    intro:
-      "Our neurosurgery service treats head injuries, spinal conditions and neurosurgical emergencies using modern imaging and microsurgery.",
-    sections: [
-      {
-        title: "Brain",
-        points: [
-          "Head injury & trauma management",
-          "Cerebral haemorrhage care",
-          "Brain tumour evaluation",
-          "Hydrocephalus treatment",
-          "Neuro-critical care",
-        ],
-      },
-      {
-        title: "Spine",
-        points: [
-          "Disc prolapse (slipped disc)",
-          "Spinal stenosis",
-          "Spine trauma & fractures",
-          "Spinal fusion surgery",
-          "Cervical & lumbar radiculopathy",
-        ],
-      },
-      {
-        title: "Nerve & Peripheral",
-        points: [
-          "Carpal tunnel syndrome",
-          "Nerve entrapment disorders",
-          "Peripheral nerve injuries",
-          "Sciatica evaluation",
-          "Chronic pain interventions",
-        ],
-      },
-    ],
-  },
 } as const;
 
 export const doctors = [
   {
     slug: "dr-ak-agarwal",
-    name: "Dr. A.K. Agarwal",
+    name: "Dr. A.K. Agrawal",
     qualifications: "MBBS (Gold Medalist), MS, M.Ch (Orth)",
-    specialty: "Orthopedic & Sports Injury Specialist",
+    specialty: "Orthopedic & Sports / Ligament Injury Specialist",
     experience: "35+ years",
     focus: [
       "Joint Replacement Surgery",
-      "Sports Injury Rehabilitation",
+      "Robotic Knee Resurfacing",
+      "Sports & Ligament Injury",
       "Trauma & Fracture Care",
       "Arthroscopic Surgery",
     ],
@@ -769,14 +776,16 @@ export const doctors = [
   },
   {
     slug: "dr-manisha-agarwal",
-    name: "Dr. Manisha Agarwal",
+    name: "Dr. Manisha Agrawal",
     qualifications: "MBBS (Gold Medalist), MS, DNB, FICMCH · Senior Secretary KOGS",
     specialty: "Gynaecologist & Infertility Specialist",
     experience: "25+ years",
     focus: [
       "High-risk Obstetrics",
       "Infertility Evaluation & IVF Counselling",
+      "IUI (Husband & Donor)",
       "Laparoscopic Gynaecology",
+      "Aesthetic & Cosmetic Surgery",
       "Menopause Care",
     ],
     achievements: [
@@ -792,7 +801,7 @@ export const testimonials = [
     name: "Ravi Kumar",
     role: "Knee Replacement Patient",
     quote:
-      "Dr. Agarwal and the team gave me my life back. From consultation to recovery, the care was outstanding.",
+      "Dr. Agrawal and the team gave me my life back. From consultation to recovery, the care was outstanding.",
   },
   {
     name: "Priya Sharma",
@@ -834,7 +843,7 @@ export const faqs = [
   },
   {
     q: "What makes your joint replacement centre different?",
-    a: "A dedicated modular OT, imported implants, computer-assisted planning and a rapid-recovery physiotherapy protocol led by Dr. A.K. Agarwal.",
+    a: "A dedicated modular OT, imported implants, computer-assisted planning and a rapid-recovery physiotherapy protocol led by Dr. A.K. Agrawal.",
   },
   {
     q: "Do you offer infertility treatment and counselling?",
@@ -856,7 +865,7 @@ export const contactInfo = {
 export const stats = [
   ["30+", "Years Legacy"],
   ["50K+", "Patients Treated"],
-  ["6", "Modular OTs"],
+  ["3", "Modular OTs"],
   ["100%", "Cashless"],
 ] as const;
 

@@ -28,7 +28,7 @@ type Form = {
 };
 
 const STEPS = ["Department", "Doctor", "Date & time", "Details", "Confirm"] as const;
-const TIMES = ["09:00", "10:00", "11:00", "12:00", "15:00", "16:00", "17:00", "18:00"];
+const TIMES = ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00"];
 
 const CONSULTATION_FEE = 500;
 // Official Satya Hospital Razorpay payment links
@@ -86,7 +86,7 @@ function Appointment() {
           <span className="text-white/70">Consultation fee:</span>
           <span className="font-display text-lg font-semibold text-white">₹{CONSULTATION_FEE}</span>
           <span className="text-white/70">·</span>
-          <span className="text-white/80">In-person or video · OPD 9:00 AM – 8:00 PM</span>
+          <span className="text-white/80">In-person or video · OPD 10:00 AM – 3:00 PM</span>
         </div>
       </PageHeader>
 

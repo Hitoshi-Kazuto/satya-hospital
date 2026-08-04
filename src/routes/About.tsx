@@ -28,9 +28,9 @@ function About() {
             />
             <p className="mt-6 text-muted-foreground">
               Satya Hospital was founded in 1995 in Kanpur with a focus on orthopaedics, trauma and
-              maternity care. The hospital now runs six modular operation theatres, a 24×7 emergency
-              and trauma unit, a complete maternity and infertility service, and a rehabilitation
-              floor — all under one roof.
+              maternity care. The hospital now runs three modular operation theatres, a 24×7
+              emergency and trauma unit, a complete maternity and infertility service, and a
+              rehabilitation floor — all under one roof.
             </p>
             <p className="mt-4 text-muted-foreground">
               Departments are led by senior consultants. Surgeries are performed in laminar-flow

@@ -29,7 +29,7 @@ function EnquiryForm() {
           Thank you — your enquiry is with us
         </h2>
         <p className="mt-2 max-w-sm text-sm leading-relaxed text-muted-foreground">
-          Our front office will get back to you during OPD hours (9 AM – 8 PM). For urgent
+          Our front office will get back to you during OPD hours (10 AM – 3 PM). For urgent
           emergencies, please call the 24×7 helpline instead.
         </p>
         <button onClick={() => setSubmitted(false)} className={`${btn.secondary} mt-6`}>
@@ -177,7 +177,7 @@ function Contact() {
                 Hospital Hours
               </p>
               <p className="text-sm font-semibold text-foreground">
-                OPD: 9:00 AM – 8:00 PM · Emergency &amp; Pharmacy: 24×7
+                OPD: 10:00 AM – 3:00 PM · Emergency &amp; Pharmacy: 24×7
               </p>
             </div>
           </div>

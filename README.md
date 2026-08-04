@@ -63,23 +63,26 @@ The hospital mentions facilities such as:
     - About us
     - Our Doctors
         - {
-            Orthopedic & Sports Injury Specialist
-            Dr. A.K. Agarwal
+            Orthopedic & Sports / Ligament Injury Specialist
+            Dr. A.K. Agrawal
             MBBS (Gold Medalist), MS, M.Ch (Orth)
             35+ years experience
             Joint Replacement Surgery
-            Sports Injury Rehabilitation
+            Robotic Knee Resurfacing
+            Sports & Ligament Injury
             Trauma & Fracture Care
             Arthroscopic Surgery
         },
         {
             Gynaecologist & Infertility Specialist
-            Dr. Manisha Agarwal
+            Dr. Manisha Agrawal
             MBBS (Gold Medalist), MS, DNB, FICMCH · Senior Secretary KOGS
             25+ years experience
             High-risk Obstetrics
             Infertility Evaluation & IVF Counselling
+            IUI (Husband & Donor)
             Laparoscopic Gynaecology
+            Aesthetic & Cosmetic Surgery
             Menopause Care
         }
     - Infrastructure
@@ -117,4 +120,3 @@ The hospital mentions facilities such as:
 - Gynecology and Obst ()
 - General Surgery
 - ENT
-- Neuro Surgery

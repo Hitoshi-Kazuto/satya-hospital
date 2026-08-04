@@ -105,8 +105,8 @@ export function Footer() {
             ["Our Services", "/services"],
             ["Gynecology & Obstetrics", "/gynecology-obstetrics"],
             ["General Surgery", "/general-surgery"],
+            ["Facilities", "/facilities"],
             ["ENT", "/ent"],
-            ["Neuro Surgery", "/neuro-surgery"],
             ["Book Appointment", "/appointment"],
           ]}
         />
