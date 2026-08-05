@@ -855,6 +855,32 @@ export const doctors: Doctor[] = [
       "Post-surgical Recovery & Rehabilitation",
     ],
   },
+  {
+    slug: "dr-himani-vaswani",
+    name: "Dr. Himani Vaswani",
+    qualifications: "BDS, MDS (Oral & Maxillofacial Surgery)",
+    specialty: "Oral & Maxillofacial Surgeon",
+    focus: [
+      "Facial Trauma Surgery",
+      "Dental Implants",
+      "Impacted Wisdom Tooth Removal",
+      "Corrective Jaw Surgery",
+      "Oral Cysts & Tumors",
+      "TMJ Disorder Management",
+    ],
+  },
+  {
+    slug: "dr-vivek-sachan",
+    name: "Dr. Vivek Sachan",
+    qualifications: "MBBS",
+    specialty: "Physician",
+    focus: [
+      "General Medicine & OPD Care",
+      "Fever & Infections Management",
+      "Diabetes & Hypertension Care",
+      "Preventive Health Check-ups",
+    ],
+  },
 ];
 
 export const testimonials = [

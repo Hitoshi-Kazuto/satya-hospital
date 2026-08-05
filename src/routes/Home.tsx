@@ -41,6 +41,8 @@ import heroImg from "@/assets/hero-hospital.jpg";
 import drAk from "@/assets/doctor-ak-agarwal.jpeg";
 import drManisha from "@/assets/doctor-manisha-agarwal.jpg";
 import drGaurav from "@/assets/doctor-gaurav.jpeg";
+import drHimani from "@/assets/doctor-himani-vaswani.jpeg";
+import drVivek from "@/assets/doctor-vivek-sachan.jpeg";
 import facOt from "@/assets/ot-0.jpeg";
 import facReception from "@/assets/both-doc.jpeg";
 
@@ -48,6 +50,8 @@ const doctorImages: Record<string, string> = {
   "dr-ak-agarwal": drAk,
   "dr-manisha-agarwal": drManisha,
   "dr-gaurav": drGaurav,
+  "dr-himani-vaswani": drHimani,
+  "dr-vivek-sachan": drVivek,
 };
 
 const MAPS_EMBED =
@@ -273,7 +277,7 @@ function Doctors() {
           <Reveal key={d.slug} delay={i * 120} className="h-full">
             <article className="group h-full overflow-hidden rounded-3xl border border-border bg-white shadow-elevated/50 transition duration-200 hover:-translate-y-1 hover:shadow-elevated">
               <div className="grid gap-0 sm:grid-cols-5">
-                <div className="relative sm:col-span-2">
+                <div className="relative sm:col-span-2 sm:h-full">
                   <img
                     src={doctorImages[d.slug]}
                     alt={`Portrait of ${d.name}`}
