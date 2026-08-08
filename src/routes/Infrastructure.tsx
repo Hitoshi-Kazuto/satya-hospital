@@ -6,15 +6,17 @@ import { Reveal } from "@/components/site/Reveal";
 import { btn } from "@/components/site/buttons";
 import { infrastructure } from "@/lib/hospital-data";
 import facOt from "@/assets/ot-0.jpeg";
-import facReception from "@/assets/both-doc.jpeg";
-import facRoom from "@/assets/doc-1.jpeg";
-import heroImg from "@/assets/hero-hospital.jpg";
 import ot1 from "@/assets/ot-1.jpeg";
 import ot2 from "@/assets/ot-2.jpeg";
-import ot3 from "@/assets/ot-3.jpeg";
+import ot3 from "@/assets/ot-3.png";
 import ot4 from "@/assets/ot-4.jpeg";
 import ot5 from "@/assets/ot-5.jpeg";
-import ot6 from "@/assets/ot-6.jpeg";
+import ot6 from "@/assets/ot-6.png";
+import ot7 from "@/assets/ot-7.png";
+import infra1 from "@/assets/infra-1.png";
+import infra2 from "@/assets/infra-2.png";
+import infra3 from "@/assets/infra-3.png";
+import infra4 from "@/assets/infra-4.png";
 
 function Infrastructure() {
   return (
@@ -28,7 +30,7 @@ function Infrastructure() {
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <Reveal>
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-            {[heroImg, facReception, facOt, facRoom].map((s, i) => (
+            {[infra1, infra2, infra3, infra4].map((s, i) => (
               <img
                 key={i}
                 src={s}
@@ -73,7 +75,7 @@ function Infrastructure() {
           />
         </Reveal>
         <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">
-          {[facOt, ot1, ot2, ot3, ot4, ot5, ot6].map((s, i) => (
+          {[facOt, ot1, ot2, ot3, ot4, ot5, ot6, ot7].map((s, i) => (
             <Reveal
               key={i}
               delay={Math.min(i, 6) * 60}

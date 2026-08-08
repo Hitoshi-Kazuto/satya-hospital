@@ -275,48 +275,44 @@ function Doctors() {
       <div className="mt-12 grid gap-8 md:grid-cols-2">
         {doctors.map((d, i) => (
           <Reveal key={d.slug} delay={i * 120} className="h-full">
-            <article className="group h-full overflow-hidden rounded-3xl border border-border bg-white shadow-elevated/50 transition duration-200 hover:-translate-y-1 hover:shadow-elevated">
-              <div className="grid gap-0 sm:grid-cols-5">
-                <div className="relative sm:col-span-2 sm:h-full">
-                  <img
-                    src={doctorImages[d.slug]}
-                    alt={`Portrait of ${d.name}`}
-                    loading="lazy"
-                    width={800}
-                    height={1000}
-                    className="h-64 w-full object-cover object-top sm:h-full"
-                  />
-                </div>
-                <div className="p-6 sm:col-span-3 sm:p-8">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[color:var(--brand)]">
-                    {d.specialty}
-                  </p>
-                  <h3 className="mt-2 font-display text-2xl font-semibold text-foreground">
-                    {d.name}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">{d.qualifications}</p>
-                  {d.experience && (
-                    <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-[color:var(--brand-soft)] px-3 py-1 text-xs font-semibold text-[color:var(--brand)]">
-                      {d.experience} experience
-                    </div>
-                  )}
+            <article className="group grid h-full overflow-hidden rounded-3xl border border-border bg-white shadow-elevated/50 transition duration-200 hover:-translate-y-1 hover:shadow-elevated sm:grid-cols-5">
+              <img
+                src={doctorImages[d.slug]}
+                alt={`Portrait of ${d.name}`}
+                loading="lazy"
+                width={800}
+                height={1000}
+                className="h-64 w-full object-cover object-top sm:col-span-2 sm:h-full"
+              />
+              <div className="p-6 sm:col-span-3 sm:p-8">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[color:var(--brand)]">
+                  {d.specialty}
+                </p>
+                <h3 className="mt-2 font-display text-2xl font-semibold text-foreground">
+                  {d.name}
+                </h3>
+                <p className="text-sm text-muted-foreground">{d.qualifications}</p>
+                {d.experience && (
+                  <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-[color:var(--brand-soft)] px-3 py-1 text-xs font-semibold text-[color:var(--brand)]">
+                    {d.experience} experience
+                  </div>
+                )}
 
-                  <ul className="mt-5 space-y-2 text-sm text-foreground/80">
-                    {(d.focus ?? []).map((f) => (
-                      <li key={f} className="flex items-start gap-2">
-                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[color:var(--brand)]" />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
+                <ul className="mt-5 space-y-2 text-sm text-foreground/80">
+                  {(d.focus ?? []).map((f) => (
+                    <li key={f} className="flex items-start gap-2">
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[color:var(--brand)]" />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
 
-                  <Link
-                    to="/appointment"
-                    className="mt-6 inline-flex items-center gap-2 rounded-full gradient-brand px-5 py-2.5 text-sm font-semibold text-white shadow-brand transition duration-200 hover:brightness-110"
-                  >
-                    Book Appointment <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </div>
+                <Link
+                  to="/appointment"
+                  className="mt-6 inline-flex items-center gap-2 rounded-full gradient-brand px-5 py-2.5 text-sm font-semibold text-white shadow-brand transition duration-200 hover:brightness-110"
+                >
+                  Book Appointment <ArrowRight className="h-4 w-4" />
+                </Link>
               </div>
             </article>
           </Reveal>

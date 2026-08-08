@@ -6,8 +6,17 @@ import { PageHeader, SectionHeader } from "@/components/site/PageHeader";
 import { Reveal } from "@/components/site/Reveal";
 import { btn } from "@/components/site/buttons";
 import { orthoTopicGroups, doctors, type OrthoTopic } from "@/lib/hospital-data";
+import drAk from "@/assets/doctor-ak-agarwal.jpeg";
+import drGaurav from "@/assets/doctor-gaurav.jpeg";
 
 const allTopics = orthoTopicGroups.flatMap((g) => g.topics) as OrthoTopic[];
+
+const orthoDoctors = doctors.filter((d) => d.slug === "dr-ak-agarwal" || d.slug === "dr-gaurav");
+
+const orthoImages: Record<string, string> = {
+  "dr-ak-agarwal": drAk,
+  "dr-gaurav": drGaurav,
+};
 
 function Orthopedics() {
   const { hash } = useLocation();
@@ -27,21 +36,63 @@ function Orthopedics() {
         eyebrow="Orthopedics"
         title="Orthopaedic care"
         intro="Knee, hip and shoulder care — from pain management and injections to replacement surgery and rehabilitation, led by senior consultants with in-house physiotherapy."
-      >
-        <div className="mt-8 flex flex-wrap gap-2">
-          {allTopics.map((t) => (
-            <a
-              key={t.slug}
-              href={`#${t.slug}`}
-              className="rounded-full border border-white/25 bg-white/95 px-4 py-2 text-sm font-medium text-foreground/80 transition duration-200 hover:bg-white hover:text-[color:var(--brand)]"
-            >
-              {t.name}
-            </a>
-          ))}
-        </div>
-      </PageHeader>
+      ></PageHeader>
 
       <section className="mx-auto max-w-7xl space-y-20 px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+        <div>
+          <div className="flex items-center gap-3">
+            <span className="h-px flex-1 bg-[color:var(--brand)]/20" />
+            <h2 className="text-xs font-semibold uppercase tracking-[0.22em] text-[color:var(--brand)]">
+              Meet Your Orthopaedic Consultants
+            </h2>
+            <span className="h-px flex-1 bg-[color:var(--brand)]/20" />
+          </div>
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            {orthoDoctors.map((d) => (
+              <Reveal key={d.slug} className="h-full">
+                <article className="group grid h-full overflow-hidden rounded-3xl border border-border bg-white shadow-elevated/50 transition duration-200 hover:-translate-y-1 hover:shadow-elevated sm:grid-cols-5">
+                  <img
+                    src={orthoImages[d.slug]}
+                    alt={`Portrait of ${d.name}`}
+                    loading="lazy"
+                    width={800}
+                    height={1000}
+                    className="h-64 w-full object-cover object-top sm:col-span-2 sm:h-full"
+                  />
+                  <div className="p-6 sm:col-span-3 sm:p-7">
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[color:var(--brand)]">
+                      {d.specialty}
+                    </p>
+                    <h3 className="mt-2 font-display text-2xl font-semibold text-foreground">
+                      {d.name}
+                    </h3>
+                    <p className="text-sm text-muted-foreground">{d.qualifications}</p>
+                    {d.experience && (
+                      <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-[color:var(--brand-soft)] px-3 py-1 text-xs font-semibold text-[color:var(--brand)]">
+                        {d.experience} experience
+                      </div>
+                    )}
+                    <ul className="mt-4 space-y-2 text-sm text-foreground/80">
+                      {(d.focus ?? []).map((f) => (
+                        <li key={f} className="flex items-start gap-2">
+                          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[color:var(--brand)]" />
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
+                    <Link
+                      to="/appointment"
+                      className="mt-5 inline-flex items-center gap-2 rounded-full gradient-brand px-5 py-2.5 text-sm font-semibold text-white shadow-brand transition duration-200 hover:brightness-110"
+                    >
+                      Book Appointment <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+
         {orthoTopicGroups.map((group) => (
           <div key={group.label}>
             <div className="flex items-center gap-3">
