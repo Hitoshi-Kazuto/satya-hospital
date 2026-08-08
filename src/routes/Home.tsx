@@ -121,7 +121,7 @@ function Hero() {
               href={contactInfo.phoneHref}
               className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white transition duration-200 hover:bg-white/20"
             >
-              <Phone className="h-4 w-4" /> +91 512 228 2111
+              <Phone className="h-4 w-4" /> +91 9450332121
             </a>
           </div>
         </div>
@@ -164,7 +164,7 @@ function About() {
         <Reveal>
           <SectionHeader
             eyebrow="About Satya Hospital"
-            title="Orthopaedics, obstetrics & gynaecology, in Barra since 1995."
+            title="Orthopaedics, obstetrics & gynaecology, in Kanpur since 1995."
           />
           <p className="mt-5 leading-relaxed text-muted-foreground">
             Satya Hospital was set up in Barra 6, Kanpur in 1995 with a focus on orthopaedics,
@@ -793,7 +793,7 @@ function CTA() {
                 href={contactInfo.phoneHref}
                 className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white transition duration-200 hover:bg-white/20"
               >
-                <Phone className="h-4 w-4" /> +91 512 228 2111
+                <Phone className="h-4 w-4" /> +91 9450332121
               </a>
             </div>
           </div>

@@ -152,24 +152,9 @@ export const infrastructure = [
     desc: "HEPA-filtered, laminar-flow modular OTs with C-Arm imaging and advanced anaesthesia workstations.",
   },
   {
-    title: "24×7 Emergency & ICU",
-    icon: Activity,
-    desc: "A round-the-clock emergency department, intensive care unit and central monitoring.",
-  },
-  {
-    title: "In-house Diagnostics",
-    icon: Microscope,
-    desc: "Digital X-Ray, ultrasound, pathology laboratory and pre-operative workup under one roof.",
-  },
-  {
     title: "Physiotherapy Centre",
     icon: HeartPulse,
     desc: "A dedicated rehabilitation floor with structured protocols for joint, spine and ligament recovery.",
-  },
-  {
-    title: "In-house Pharmacy",
-    icon: Pill,
-    desc: "A fully stocked pharmacy ensuring medicines and consumables are always at hand.",
   },
   {
     title: "Labour Room & Maternity Suite",
@@ -182,9 +167,24 @@ export const infrastructure = [
     desc: "Hormonal profiling, ultrasound-guided procedures and personalised fertility care.",
   },
   {
-    title: "Central Oxygen & Generator Backup",
+    title: "Digital X-Ray and Ultrasound",
     icon: Building2,
-    desc: "Central oxygen supply and full generator backup to keep critical care uninterrupted.",
+    desc: "Advanced imaging for acurate diagnosis, helping doctors detect conditions quickly and plan right treatment.",
+  },
+  {
+    title: "24×7 Emergency & ICU",
+    icon: Activity,
+    desc: "A round-the-clock emergency department, intensive care unit and central monitoring.",
+  },
+  {
+    title: "In-house Diagnostics",
+    icon: Microscope,
+    desc: "Digital X-Ray, ultrasound, pathology laboratory and pre-operative workup under one roof.",
+  },
+  {
+    title: "In-house Pharmacy",
+    icon: Pill,
+    desc: "A fully stocked pharmacy ensuring medicines and consumables are always at hand.",
   },
 ] as const;
 
@@ -192,6 +192,7 @@ export const facilities = [
   "Orthopaedics & Joint Replacement Centre",
   "Robotic Knee Surgery",
   "Arthroscopy & Ligament Surgery",
+  "Male and Female Infertility",
   "Advanced Physiotherapy",
   "Modular Operation Theatre",
   "24×7 Emergency",
@@ -199,7 +200,6 @@ export const facilities = [
   "Cashless Insurance & TPA",
   "Labour Room",
   "Infertility Unit",
-  "Cardiac Monitoring",
   "Central Oxygen Supply",
   "Digital X-Ray & Pathology",
   "Generator Backup",
@@ -843,44 +843,44 @@ export const doctors: Doctor[] = [
       "Trusted by families across UP",
     ],
   },
-  {
-    slug: "dr-gaurav",
-    name: "Dr. Gaurav",
-    qualifications: "MBBS, MS",
-    specialty: "Junior Orthopedic Consultant",
-    focus: [
-      "Orthopedic Trauma & Fracture Care",
-      "Joint Replacement & Arthroscopy Support",
-      "Outpatient Orthopedic Consultation",
-      "Post-surgical Recovery & Rehabilitation",
-    ],
-  },
-  {
-    slug: "dr-himani-vaswani",
-    name: "Dr. Himani Vaswani",
-    qualifications: "BDS, MDS (Oral & Maxillofacial Surgery)",
-    specialty: "Oral & Maxillofacial Surgeon",
-    focus: [
-      "Facial Trauma Surgery",
-      "Dental Implants",
-      "Impacted Wisdom Tooth Removal",
-      "Corrective Jaw Surgery",
-      "Oral Cysts & Tumors",
-      "TMJ Disorder Management",
-    ],
-  },
-  {
-    slug: "dr-vivek-sachan",
-    name: "Dr. Vivek Sachan",
-    qualifications: "MBBS",
-    specialty: "Physician",
-    focus: [
-      "General Medicine & OPD Care",
-      "Fever & Infections Management",
-      "Diabetes & Hypertension Care",
-      "Preventive Health Check-ups",
-    ],
-  },
+  // {
+  //   slug: "dr-gaurav",
+  //   name: "Dr. Gaurav",
+  //   qualifications: "MBBS, MS",
+  //   specialty: "Junior Orthopedic Consultant",
+  //   focus: [
+  //     "Orthopedic Trauma & Fracture Care",
+  //     "Joint Replacement & Arthroscopy Support",
+  //     "Outpatient Orthopedic Consultation",
+  //     "Post-surgical Recovery & Rehabilitation",
+  //   ],
+  // },
+  // {
+  //   slug: "dr-himani-vaswani",
+  //   name: "Dr. Himani Vaswani",
+  //   qualifications: "BDS, MDS (Oral & Maxillofacial Surgery)",
+  //   specialty: "Oral & Maxillofacial Surgeon",
+  //   focus: [
+  //     "Facial Trauma Surgery",
+  //     "Dental Implants",
+  //     "Impacted Wisdom Tooth Removal",
+  //     "Corrective Jaw Surgery",
+  //     "Oral Cysts & Tumors",
+  //     "TMJ Disorder Management",
+  //   ],
+  // },
+  // {
+  //   slug: "dr-vivek-sachan",
+  //   name: "Dr. Vivek Sachan",
+  //   qualifications: "MBBS",
+  //   specialty: "Physician",
+  //   focus: [
+  //     "General Medicine & OPD Care",
+  //     "Fever & Infections Management",
+  //     "Diabetes & Hypertension Care",
+  //     "Preventive Health Check-ups",
+  //   ],
+  // },
 ];
 
 export const testimonials = [
@@ -939,19 +939,19 @@ export const faqs = [
 ];
 
 export const contactInfo = {
-  phone: "+91 512 228 2111",
-  phoneHref: "tel:+915122282111",
+  phone: "+91 9450332121",
+  phoneHref: "tel:+919450332121",
   altPhone: "Reception 98389 68996",
   email: "contact@satyahospital.com",
   emailHref: "mailto:contact@satyahospital.com",
-  address: "HIG-1/2, 1/3, Satya Chowk, Barra 6, Kanpur, Uttar Pradesh 208027",
+  address: "HIG- 1/3, Satya Chowk, Barra 6, Kanpur, Uttar Pradesh 208027",
   whatsapp: "https://wa.me/919838951052",
   maps: "https://www.google.com/maps/place/Satya+Trauma+%26+Maternity+Centre/@26.4394742,80.2905691,17z/data=!3m1!4b1!4m5!3m4!1s0x399c47c3cd081a87:0x624a166e9d7bbb0a!8m2!3d26.4394694!4d80.2927578",
 };
 
 export const stats = [
-  ["30+", "Years Legacy"],
-  ["50K+", "Patients Treated"],
+  ["35+", "Years Legacy"],
+  ["50L+", "Patients Treated"],
   ["3", "Modular OTs"],
   ["100%", "Cashless"],
 ] as const;

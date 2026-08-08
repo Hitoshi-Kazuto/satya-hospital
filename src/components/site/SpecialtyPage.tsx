@@ -86,10 +86,10 @@ export function SpecialtyPage({
                   available appointment time.
                 </p>
                 <a
-                  href="tel:+915122282111"
+                  href="tel:+919450332121"
                   className="mt-5 inline-flex items-center gap-2 rounded-full gradient-brand px-6 py-3 text-sm font-semibold text-white shadow-brand transition duration-200 hover:brightness-110"
                 >
-                  Call +91 512 228 2111
+                  Call +91 9450332121
                 </a>
               </div>
             </div>
