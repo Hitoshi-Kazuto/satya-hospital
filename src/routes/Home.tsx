@@ -230,12 +230,9 @@ function Specialities() {
           />
         </Reveal>
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {departments.map(({ name, icon: Icon, desc, slug }, i) => (
-            <Reveal key={name} delay={Math.min(i, 8) * 60} className="h-full">
-              <Link
-                to={`/${slug}`}
-                className="flex h-full items-start gap-4 rounded-2xl border border-border bg-white p-6 shadow-elevated/50 transition duration-200 hover:-translate-y-0.5 hover:border-[color:var(--brand)]/30 hover:shadow-elevated"
-              >
+          {departments.map(({ name, icon: Icon, desc, slug }, i) => {
+            const card = (
+              <>
                 <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-[color:var(--brand-soft)] text-[color:var(--brand)]">
                   <Icon className="h-6 w-6" />
                 </span>
@@ -243,9 +240,26 @@ function Specialities() {
                   <h3 className="font-display text-base font-semibold text-foreground">{name}</h3>
                   <p className="mt-1 text-sm text-muted-foreground">{desc}</p>
                 </div>
-              </Link>
-            </Reveal>
-          ))}
+              </>
+            );
+            const baseClass =
+              "flex h-full items-start gap-4 rounded-2xl border border-border bg-white p-6 shadow-elevated/50";
+
+            return (
+              <Reveal key={name} delay={Math.min(i, 8) * 60} className="h-full">
+                {name === "Dentistry" ? (
+                  <div className={baseClass}>{card}</div>
+                ) : (
+                  <Link
+                    to={`/${slug}`}
+                    className={`${baseClass} transition duration-200 hover:-translate-y-0.5 hover:border-[color:var(--brand)]/30 hover:shadow-elevated`}
+                  >
+                    {card}
+                  </Link>
+                )}
+              </Reveal>
+            );
+          })}
         </div>
         <Reveal className="mt-10 text-center">
           <Link
