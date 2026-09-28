@@ -17,6 +17,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { doctors, departments } from "@/lib/hospital-data";
 
 type Form = {
+  type: "physical" | "video";
   department: string;
   doctor: string;
   date: string;
@@ -24,10 +25,9 @@ type Form = {
   name: string;
   phone: string;
   email: string;
-  type: "physical" | "video";
 };
 
-const STEPS = ["Department", "Doctor", "Date & time", "Details", "Confirm"] as const;
+const STEPS = ["Payment", "Department", "Doctor", "Date & time", "Details"] as const;
 const TIMES = ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00"];
 
 const CONSULTATION_FEE = 500;
@@ -40,6 +40,7 @@ const RAZORPAY_LINKS = {
 function Appointment() {
   const [step, setStep] = useState(0);
   const [form, setForm] = useState<Form>({
+    type: "physical",
     department: "",
     doctor: "",
     date: "",
@@ -47,31 +48,37 @@ function Appointment() {
     name: "",
     phone: "",
     email: "",
-    type: "physical",
   });
   const [submitted, setSubmitted] = useState<string | null>(null);
+  const [paymentCompleted, setPaymentCompleted] = useState(false);
 
   const canNext = useMemo(() => {
     switch (step) {
       case 0:
-        return !!form.department;
+        return paymentCompleted;
       case 1:
-        return !!form.doctor;
+        return !!form.department;
       case 2:
-        return !!form.date && !!form.time;
+        return !!form.doctor;
       case 3:
+        return !!form.date && !!form.time;
+      case 4:
         return form.name.length > 1 && /^\+?\d[\d\s-]{7,}$/.test(form.phone);
       default:
         return true;
     }
-  }, [step, form]);
+  }, [step, form, paymentCompleted]);
 
-  const submit = () => {
-    const id = "SH-" + Math.random().toString(36).slice(2, 8).toUpperCase();
+  const handlePayment = () => {
     const payLink = form.type === "video" ? RAZORPAY_LINKS.video : RAZORPAY_LINKS.physical;
     if (typeof window !== "undefined") {
       window.open(payLink, "_blank", "noopener,noreferrer");
     }
+    setPaymentCompleted(true);
+  };
+
+  const submit = () => {
+    const id = "SH-" + Math.random().toString(36).slice(2, 8).toUpperCase();
     setSubmitted(id);
   };
 
@@ -80,7 +87,7 @@ function Appointment() {
       <PageHeader
         eyebrow="Book Appointment"
         title="Book an appointment"
-        intro="Choose your department, doctor and time — then confirm and pay securely."
+        intro="Pay first, then choose your department, doctor and time."
       >
         <div className="mt-8 inline-flex flex-wrap items-center gap-3 rounded-2xl border border-white/20 bg-white/10 px-5 py-3 text-sm">
           <span className="text-white/70">Consultation fee:</span>
@@ -115,12 +122,55 @@ function Appointment() {
               Back to home <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-        ) : (
+) : (
           <>
             <Stepper step={step} />
             <Reveal className="mt-8">
               <div className="rounded-3xl border border-border bg-white p-6 shadow-elevated sm:p-10">
                 {step === 0 && (
+                  <div className="space-y-6">
+                    <div>
+                      <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                        Consultation type
+                      </label>
+                      <div className="mt-3 grid grid-cols-2 gap-3">
+                        <TypeChoice
+                          active={form.type === "physical"}
+                          onClick={() => setForm({ ...form, type: "physical" })}
+                          icon={<User className="h-5 w-5" />}
+                          title="In-person"
+                          desc="Visit the hospital"
+                        />
+                        <TypeChoice
+                          active={form.type === "video"}
+                          onClick={() => setForm({ ...form, type: "video" })}
+                          icon={<Video className="h-5 w-5" />}
+                          title="Video"
+                          desc="Consult online"
+                        />
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 rounded-2xl border border-border bg-white p-5 text-sm text-muted-foreground">
+                      <CreditCard className="mt-0.5 h-5 w-5 shrink-0 text-[color:var(--brand)]" />
+                      <p>
+                        Consultation fee of{" "}
+                        <span className="font-semibold text-foreground">₹{CONSULTATION_FEE}</span>{" "}
+                        is collected securely via Razorpay (UPI, cards, netbanking or wallets).
+                        Click "Pay now" to complete payment securely.
+                      </p>
+                    </div>
+                    <button
+                      onClick={handlePayment}
+                      className="inline-flex items-center gap-2 rounded-full gradient-brand px-6 py-2.5 text-sm font-semibold text-white shadow-brand transition duration-200 hover:brightness-110 w-full"
+                    >
+                      Pay now <ArrowRight className="h-4 w-4" />
+                    </button>
+                    {paymentCompleted && (
+                      <p className="text-center text-sm text-green-600">Payment completed! Continue to select department.</p>
+                    )}
+                  </div>
+                )}
+                {step === 1 && (
                   <Grid>
                     {departments.map((d) => (
                       <SelectCard
@@ -134,7 +184,7 @@ function Appointment() {
                     ))}
                   </Grid>
                 )}
-                {step === 1 && (
+                {step === 2 && (
                   <Grid cols={2}>
                     {doctors.map((d) => (
                       <SelectCard
@@ -148,7 +198,7 @@ function Appointment() {
                     ))}
                   </Grid>
                 )}
-                {step === 2 && (
+                {step === 3 && (
                   <div className="space-y-6">
                     <div>
                       <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
@@ -182,30 +232,9 @@ function Appointment() {
                         ))}
                       </div>
                     </div>
-                    <div>
-                      <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                        Consultation type
-                      </label>
-                      <div className="mt-3 grid grid-cols-2 gap-3">
-                        <TypeChoice
-                          active={form.type === "physical"}
-                          onClick={() => setForm({ ...form, type: "physical" })}
-                          icon={<User className="h-5 w-5" />}
-                          title="In-person"
-                          desc="Visit the hospital"
-                        />
-                        <TypeChoice
-                          active={form.type === "video"}
-                          onClick={() => setForm({ ...form, type: "video" })}
-                          icon={<Video className="h-5 w-5" />}
-                          title="Video"
-                          desc="Consult online"
-                        />
-                      </div>
-                    </div>
                   </div>
                 )}
-                {step === 3 && (
+                {step === 4 && (
                   <div className="grid gap-4 sm:grid-cols-2">
                     <Field
                       label="Full name"
@@ -230,30 +259,6 @@ function Appointment() {
                     </div>
                   </div>
                 )}
-                {step === 4 && (
-                  <div className="space-y-4">
-                    <div className="rounded-2xl bg-[color:var(--brand-soft)]/50 p-6 text-sm">
-                      <Row label="Department" value={form.department} />
-                      <Row label="Doctor" value={form.doctor} />
-                      <Row label="When" value={`${form.date} · ${form.time}`} />
-                      <Row
-                        label="Consultation"
-                        value={form.type === "video" ? "Video" : "In-person"}
-                      />
-                      <Row label="Patient" value={`${form.name} · ${form.phone}`} />
-                    </div>
-                    <div className="flex items-start gap-3 rounded-2xl border border-border bg-white p-5 text-sm text-muted-foreground">
-                      <CreditCard className="mt-0.5 h-5 w-5 shrink-0 text-[color:var(--brand)]" />
-                      <p>
-                        Consultation fee of{" "}
-                        <span className="font-semibold text-foreground">₹{CONSULTATION_FEE}</span>{" "}
-                        is collected securely via Razorpay (UPI, cards, netbanking or wallets).
-                        Tapping "Confirm &amp; pay" opens the secure payment page. You'll receive an
-                        invoice plus confirmation via email, SMS and WhatsApp.
-                      </p>
-                    </div>
-                  </div>
-                )}
 
                 <div className="mt-8 flex items-center justify-between">
                   <button
@@ -263,7 +268,7 @@ function Appointment() {
                   >
                     <ArrowLeft className="h-4 w-4" /> Back
                   </button>
-                  {step < STEPS.length - 1 ? (
+{step < STEPS.length - 1 ? (
                     <button
                       onClick={() => setStep((s) => s + 1)}
                       disabled={!canNext}
@@ -276,7 +281,7 @@ function Appointment() {
                       onClick={submit}
                       className="inline-flex items-center gap-2 rounded-full gradient-brand px-6 py-2.5 text-sm font-semibold text-white shadow-brand transition duration-200 hover:brightness-110"
                     >
-                      Confirm &amp; pay <ArrowRight className="h-4 w-4" />
+                      Confirm <ArrowRight className="h-4 w-4" />
                     </button>
                   )}
                 </div>

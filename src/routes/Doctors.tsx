@@ -9,14 +9,12 @@ import drAk from "@/assets/doctor-ak-agarwal.jpeg";
 import drManisha from "@/assets/doctor-manisha-agarwal.jpg";
 import drGaurav from "@/assets/doctor-gaurav.jpeg";
 import drHimani from "@/assets/doctor-himani-vaswani.jpeg";
-import drVivek from "@/assets/doctor-vivek-sachan.jpeg";
 
 const images: Record<string, string> = {
   "dr-ak-agarwal": drAk,
   "dr-manisha-agarwal": drManisha,
   "dr-gaurav": drGaurav,
   "dr-himani-vaswani": drHimani,
-  "dr-vivek-sachan": drVivek,
 };
 
 function Doctors() {
