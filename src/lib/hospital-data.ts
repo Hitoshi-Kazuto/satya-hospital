@@ -869,19 +869,7 @@ export const doctors: Doctor[] = [
       "Oral Cysts & Tumors",
     ],
   },
-  // {
-  //   slug: "dr-vivek-sachan",
-  //   name: "Dr. Vivek Sachan",
-  //   qualifications: "MBBS, MD (Medicine)",
-  //   specialty: "Physician – Heart, Diabetes & Chest Specialist",
-  //   focus: [
-  //     "Cardiac Care & Heart Disease Management",
-  //     "Diabetes & Hypertension Management",
-  //     "Chest & Respiratory Disorders",
-  //     "General Medicine & OPD Care",
-  //   ],
-  // },
-];
+  ];
 
 export const testimonials = [
   {

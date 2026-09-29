@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, CheckCircle2, Phone } from "lucide-react";
+import { ArrowRight, CheckCircle2, Phone, User } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { PageHeader } from "@/components/site/PageHeader";
 import { Reveal } from "@/components/site/Reveal";
@@ -7,13 +7,11 @@ import { btn } from "@/components/site/buttons";
 import { doctors, contactInfo, stats } from "@/lib/hospital-data";
 import drAk from "@/assets/doctor-ak-agarwal.jpeg";
 import drManisha from "@/assets/doctor-manisha-agarwal.jpg";
-import drGaurav from "@/assets/doctor-gaurav.jpeg";
 import drHimani from "@/assets/doctor-himani-vaswani.jpeg";
 
 const images: Record<string, string> = {
   "dr-ak-agarwal": drAk,
   "dr-manisha-agarwal": drManisha,
-  "dr-gaurav": drGaurav,
   "dr-himani-vaswani": drHimani,
 };
 
@@ -45,12 +43,18 @@ function Doctors() {
         {doctors.map((d) => (
           <Reveal key={d.slug}>
             <article className="grid gap-0 overflow-hidden rounded-3xl border border-border bg-white shadow-elevated/50 md:grid-cols-3">
-              <img
-                src={images[d.slug]}
-                alt={d.name}
-                loading="lazy"
-                className="h-80 w-full object-cover object-top md:h-full"
-              />
+              {images[d.slug] ? (
+                <img
+                  src={images[d.slug]}
+                  alt={d.name}
+                  loading="lazy"
+                  className="h-80 w-full object-cover object-top md:h-full"
+                />
+              ) : (
+                <div className="h-80 w-full bg-muted flex items-center justify-center md:h-full">
+                  <User className="h-24 w-24 text-muted-foreground" />
+                </div>
+              )}
               <div className="p-8 md:col-span-2 md:p-10">
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[color:var(--brand)]">
                   {d.specialty}
