@@ -122,7 +122,7 @@ function Appointment() {
               Back to home <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-) : (
+        ) : (
           <>
             <Stepper step={step} />
             <Reveal className="mt-8">
@@ -166,7 +166,9 @@ function Appointment() {
                       Pay now <ArrowRight className="h-4 w-4" />
                     </button>
                     {paymentCompleted && (
-                      <p className="text-center text-sm text-green-600">Payment completed! Continue to select department.</p>
+                      <p className="text-center text-sm text-green-600">
+                        Payment completed! Continue to select department.
+                      </p>
                     )}
                   </div>
                 )}
@@ -268,7 +270,7 @@ function Appointment() {
                   >
                     <ArrowLeft className="h-4 w-4" /> Back
                   </button>
-{step < STEPS.length - 1 ? (
+                  {step < STEPS.length - 1 ? (
                     <button
                       onClick={() => setStep((s) => s + 1)}
                       disabled={!canNext}

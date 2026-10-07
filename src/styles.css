@@ -206,6 +206,7 @@
 .reveal {
   opacity: 0;
   transform: translateY(16px);
+  pointer-events: none;
   transition:
     opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
@@ -215,6 +216,7 @@
 .reveal.is-revealed {
   opacity: 1;
   transform: translateY(0);
+  pointer-events: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -269,4 +271,13 @@
 /* Fine inner rule for quiet card definition. */
 @utility hairline {
   box-shadow: inset 0 0 0 1px rgba(166, 181, 199, 0.28);
+}
+
+/* Constrain omnidimension widget container */
+#omni-widget-component {
+  width: 60px !important;
+  height: 60px !important;
+  max-width: 60px !important;
+  max-height: 60px !important;
+  pointer-events: none !important;
 }

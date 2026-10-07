@@ -869,7 +869,7 @@ export const doctors: Doctor[] = [
       "Oral Cysts & Tumors",
     ],
   },
-  ];
+];
 
 export const testimonials = [
   {
