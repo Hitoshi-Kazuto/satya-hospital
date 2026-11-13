@@ -1,9 +1,19 @@
+/**
+ * Mount point for the omnidimension chat widget.
+ * Lifted above the sticky mobile action bar so the two never overlap.
+ */
 export function FloatingActions() {
   return (
     <div
       id="omni-widget-component"
-      className="fixed bottom-5 right-4 z-40 sm:bottom-8 sm:right-6"
-      style={{ width: "60px", height: "60px", pointerEvents: "none", maxWidth: "60px", maxHeight: "60px" }}
+      className="fixed bottom-20 right-4 z-40 md:bottom-8 md:right-6"
+      style={{
+        width: "60px",
+        height: "60px",
+        pointerEvents: "none",
+        maxWidth: "60px",
+        maxHeight: "60px",
+      }}
     ></div>
   );
 }

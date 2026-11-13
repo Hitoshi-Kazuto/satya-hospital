@@ -1,22 +1,29 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Suspense, lazy } from "react";
 
 import Home from "./routes/Home";
-import About from "./routes/About";
-import Doctors from "./routes/Doctors";
-import Infrastructure from "./routes/Infrastructure";
-import Orthopedics from "./routes/Orthopedics";
-import Services from "./routes/Services";
-import GynecologyObstetrics from "./routes/GynecologyObstetrics";
-import GeneralSurgery from "./routes/GeneralSurgery";
-import ENT from "./routes/ENT";
-import Appointment from "./routes/Appointment";
-import Departments from "./routes/Departments";
-import Facilities from "./routes/Facilities";
-import Contact from "./routes/Contact";
-import NotFound from "./routes/NotFound";
-import Infertility from "./routes/Infertility";
 import { ScrollToTop } from "@/components/site/ScrollToTop";
+
+/*
+ * Only the homepage ships in the first chunk. Every other route — including
+ * the 964-line content module most of them pull in — is fetched on demand,
+ * which keeps the initial payload off the critical path on a 4G connection.
+ */
+const About = lazy(() => import("./routes/About"));
+const Doctors = lazy(() => import("./routes/Doctors"));
+const Infrastructure = lazy(() => import("./routes/Infrastructure"));
+const Orthopedics = lazy(() => import("./routes/Orthopedics"));
+const Services = lazy(() => import("./routes/Services"));
+const GynecologyObstetrics = lazy(() => import("./routes/GynecologyObstetrics"));
+const GeneralSurgery = lazy(() => import("./routes/GeneralSurgery"));
+const ENT = lazy(() => import("./routes/ENT"));
+const Appointment = lazy(() => import("./routes/Appointment"));
+const Departments = lazy(() => import("./routes/Departments"));
+const Facilities = lazy(() => import("./routes/Facilities"));
+const Contact = lazy(() => import("./routes/Contact"));
+const NotFound = lazy(() => import("./routes/NotFound"));
+const Infertility = lazy(() => import("./routes/Infertility"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -27,28 +34,35 @@ const queryClient = new QueryClient({
   },
 });
 
+/** Holds the viewport height during a route chunk fetch so nothing jumps. */
+function RouteFallback() {
+  return <div className="min-h-dvh bg-background" aria-busy="true" />;
+}
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/doctors" element={<Doctors />} />
-          <Route path="/infrastructure" element={<Infrastructure />} />
-          <Route path="/orthopedics" element={<Orthopedics />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/gynecology-obstetrics" element={<GynecologyObstetrics />} />
-          <Route path="/infertility" element={<Infertility />} />
-          <Route path="/general-surgery" element={<GeneralSurgery />} />
-          <Route path="/ent" element={<ENT />} />
-          <Route path="/appointment" element={<Appointment />} />
-          <Route path="/departments" element={<Departments />} />
-          <Route path="/facilities" element={<Facilities />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Suspense fallback={<RouteFallback />}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/doctors" element={<Doctors />} />
+            <Route path="/infrastructure" element={<Infrastructure />} />
+            <Route path="/orthopedics" element={<Orthopedics />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/gynecology-obstetrics" element={<GynecologyObstetrics />} />
+            <Route path="/infertility" element={<Infertility />} />
+            <Route path="/general-surgery" element={<GeneralSurgery />} />
+            <Route path="/ent" element={<ENT />} />
+            <Route path="/appointment" element={<Appointment />} />
+            <Route path="/departments" element={<Departments />} />
+            <Route path="/facilities" element={<Facilities />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
       </BrowserRouter>
     </QueryClientProvider>
   );

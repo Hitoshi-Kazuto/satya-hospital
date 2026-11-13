@@ -2,6 +2,10 @@ import { Link } from "react-router-dom";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
+/**
+ * Inner-page masthead. Flat deep blue with a lime baseline rule — the
+ * gradient slab it replaces read as generic.
+ */
 export function PageHeader({
   eyebrow,
   title,
@@ -14,54 +18,94 @@ export function PageHeader({
   children?: ReactNode;
 }) {
   return (
-    <section className="gradient-brand text-white">
-      <div className="mx-auto max-w-7xl px-4 pb-12 pt-16 sm:px-6 lg:px-8 lg:pb-16 lg:pt-20">
-        <nav
-          aria-label="Breadcrumb"
-          className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-white/70"
-        >
-          <Link to="/" className="transition hover:text-white">
-            Home
-          </Link>
-          <span className="text-white/40" aria-hidden>
-            /
-          </span>
-          <span className="text-[color:var(--accent-mint)]">{eyebrow}</span>
+    <section className="relative bg-brand-deep text-white">
+      <div className="shell pb-14 pt-12 lg:pb-16 lg:pt-16">
+        <nav aria-label="Breadcrumb" className="text-meta">
+          <ol className="flex items-center gap-2 text-white/60">
+            <li>
+              <Link to="/" className="transition hover:text-white">
+                Home
+              </Link>
+            </li>
+            <li aria-hidden className="text-white/30">
+              /
+            </li>
+            <li>
+              <span aria-current="page" className="text-lime">
+                {eyebrow}
+              </span>
+            </li>
+          </ol>
         </nav>
-        <h1 className="mt-4 max-w-3xl text-balance font-display text-4xl font-semibold leading-tight sm:text-5xl">
-          {title}
-        </h1>
-        {intro && <p className="mt-4 max-w-2xl text-lg leading-relaxed text-white/85">{intro}</p>}
+        <h1 className="mt-5 max-w-4xl font-display text-h1 text-white">{title}</h1>
+        {intro && <p className="measure mt-5 text-lead text-white/80">{intro}</p>}
         {children}
       </div>
+      <div aria-hidden className="h-[3px] w-full bg-lime" />
     </section>
   );
 }
 
-export function SectionHeader({
+/**
+ * Section heading. The uppercase eyebrow is now a marked label rather than
+ * the site's universal device — use `eyebrow` on at most three sections
+ * per page and let the rest open on the heading alone.
+ */
+export function SectionHeading({
   eyebrow,
   title,
   intro,
   center = false,
+  tone = "light",
+  as: Tag = "h2",
   className,
 }: {
   eyebrow?: string;
   title: string;
   intro?: string;
   center?: boolean;
+  tone?: "light" | "dark";
+  as?: "h2" | "h3";
   className?: string;
 }) {
+  const dark = tone === "dark";
   return (
     <div className={cn("max-w-3xl", center && "mx-auto text-center", className)}>
       {eyebrow && (
-        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[color:var(--brand)]">
+        <p
+          className={cn(
+            "flex items-center gap-2.5 text-label font-semibold uppercase",
+            center && "justify-center",
+            dark ? "text-lime" : "text-lime-ink",
+          )}
+        >
+          <span aria-hidden className="h-[2px] w-6 rounded-full bg-lime" />
           {eyebrow}
         </p>
       )}
-      <h2 className="mt-3 text-balance font-display text-3xl font-semibold text-foreground sm:text-4xl">
+      <Tag
+        className={cn(
+          "font-display text-h2",
+          eyebrow ? "mt-3.5" : "",
+          dark ? "text-white" : "text-ink",
+        )}
+      >
         {title}
-      </h2>
-      {intro && <p className="mt-4 text-base text-muted-foreground">{intro}</p>}
+      </Tag>
+      {intro && (
+        <p
+          className={cn(
+            "measure mt-4 text-lead",
+            center && "mx-auto",
+            dark ? "text-white/80" : "text-ink-muted",
+          )}
+        >
+          {intro}
+        </p>
+      )}
     </div>
   );
 }
+
+/** Transitional alias — existing pages import `SectionHeader`. */
+export const SectionHeader = SectionHeading;

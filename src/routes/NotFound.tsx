@@ -7,30 +7,23 @@ import { contactInfo } from "@/lib/hospital-data";
 function NotFound() {
   return (
     <SiteLayout>
-      <section className="gradient-brand text-white">
-        <div className="mx-auto flex min-h-[60vh] max-w-7xl flex-col items-center justify-center px-4 py-24 text-center sm:px-6 lg:px-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--accent-mint)]">
+      <section className="bg-brand-deep text-white">
+        <div className="shell flex min-h-[60vh] flex-col items-center justify-center py-24 text-center">
+          <p className="flex items-center gap-3 text-label font-semibold uppercase text-lime">
+            <span aria-hidden className="h-[2px] w-6 rounded-full bg-lime" />
             Error 404
           </p>
-          <h1 className="mt-4 text-balance font-display text-4xl font-semibold sm:text-6xl lg:text-7xl">
-            Page not found
-          </h1>
-          <p className="mt-4 max-w-md text-white/80">
+          <h1 className="mt-5 font-display text-display text-white">Page not found</h1>
+          <p className="measure-tight mt-5 text-lead text-white/80">
             The page you're looking for doesn't exist or has been moved. For help, call our front
             office or return to the homepage.
           </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link
-              to="/"
-              className="inline-flex items-center gap-2 rounded-full gradient-signal px-6 py-3.5 text-sm font-semibold text-[#16220a] shadow-signal transition duration-200 hover:brightness-105"
-            >
-              Go to homepage <ArrowRight className="h-4 w-4" />
+          <div className="mt-9 flex flex-wrap justify-center gap-3">
+            <Link to="/" className={btn.onDark}>
+              Go to homepage <ArrowRight aria-hidden className="h-4 w-4" />
             </Link>
-            <a
-              href={contactInfo.phoneHref}
-              className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white transition duration-200 hover:bg-white/20"
-            >
-              <Phone className="h-4 w-4" /> {contactInfo.phone}
+            <a href={contactInfo.phoneHref} className={btn.onDarkGhost}>
+              <Phone aria-hidden className="h-4 w-4" /> {contactInfo.phone}
             </a>
           </div>
         </div>

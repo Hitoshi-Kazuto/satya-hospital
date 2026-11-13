@@ -2,48 +2,106 @@
 @source "../src";
 @import "tw-animate-css";
 
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
-
+/*
+ * Keeps Tailwind's `dark:` variant class-driven rather than media-driven.
+ * The site ships light-only; without this line every `dark:` utility inside
+ * the shadcn primitives would activate from the visitor's OS preference.
+ */
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Design system — "Clinical Minimalism".
+ * ============================================================================
+ * Satya Hospital — design system: "Clinical Warmth"
+ * ============================================================================
  *
- * A calm, premium, human-crafted healthcare system. Deep medical blue as the
- * primary identity, soft lime accents used sparingly, and a gentle mint-white
- * base. Subtle radius, soft shadows, generous whitespace. No glassmorphism,
- * no neon, no animated clutter.
+ * Brand colours are fixed by the logo and are never altered:
+ *   Blue  #0f559f    Lime  #b7db13    Ink  #373737
  *
- * Palette (Satya Hospital):
- *   Primary blue      #0f559f
- *   Deep blue         #2e6093
- *   Signal lime       #b7db13 / #bbd53f
- *   Pale lime         #deee8c
- *   Cream             #fbfed3
- *   Background        #f5fbf8
- *   Ink               #373737
- *   Steel             #a6b5c7
+ * Role assignment:
+ *   Blue  — structure and action. Headers, bands, footer, primary buttons.
+ *   Lime  — emphasis only. Active nav, step progress, figures, rules,
+ *           key-word highlights. Never a button fill, never body text.
+ *   Ink   — type.
+ *
+ * Everything else here is a derived tint of those three hues: same colour,
+ * different luminance, chosen so every text pair clears WCAG AA.
+ *
+ * Typography pairs Source Serif 4 (display) with Inter (UI/body) so headings
+ * and body differ in voice, not only in size.
+ * ============================================================================
  */
 
 @theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 8px);
-  --radius-3xl: calc(var(--radius) + 12px);
-  --radius-4xl: calc(var(--radius) + 16px);
-  --font-display: "Open Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Open Sans", ui-sans-serif, system-ui, sans-serif;
+  /* ——— Radius ladder — tight. Oversized radii read as template. ——— */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-2xl: 22px;
+
+  /* ——— Families ——— */
+  --font-display: "Source Serif 4", ui-serif, Georgia, Cambria, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* ——— Fluid type scale ——— */
+  --text-label: clamp(0.6875rem, 0.67rem + 0.08vw, 0.75rem);
+  --text-label--line-height: 1.3;
+  --text-label--letter-spacing: 0.1em;
+
+  --text-meta: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
+  --text-meta--line-height: 1.5;
+
+  --text-body: clamp(0.9375rem, 0.91rem + 0.14vw, 1.0625rem);
+  --text-body--line-height: 1.65;
+
+  --text-lead: clamp(1.0625rem, 1.01rem + 0.28vw, 1.1875rem);
+  --text-lead--line-height: 1.6;
+
+  --text-h4: clamp(1.0625rem, 1.02rem + 0.22vw, 1.1875rem);
+  --text-h4--line-height: 1.35;
+  --text-h4--letter-spacing: -0.005em;
+
+  --text-h3: clamp(1.25rem, 1.18rem + 0.35vw, 1.4375rem);
+  --text-h3--line-height: 1.25;
+  --text-h3--letter-spacing: -0.01em;
+
+  --text-h2: clamp(1.5rem, 1.31rem + 0.9vw, 2.125rem);
+  --text-h2--line-height: 1.17;
+  --text-h2--letter-spacing: -0.016em;
+
+  --text-h1: clamp(1.875rem, 1.57rem + 1.45vw, 2.875rem);
+  --text-h1--line-height: 1.12;
+  --text-h1--letter-spacing: -0.02em;
+
+  --text-display: clamp(2.125rem, 1.6rem + 2.55vw, 3.75rem);
+  --text-display--line-height: 1.06;
+  --text-display--letter-spacing: -0.025em;
+
+  --text-figure: clamp(1.875rem, 1.5rem + 1.75vw, 3rem);
+  --text-figure--line-height: 1;
+  --text-figure--letter-spacing: -0.03em;
+
+  /* ——— Brand scale (derived from the logo blue) ——— */
   --color-brand: var(--brand);
-  --color-brand-foreground: var(--brand-foreground);
-  --color-brand-soft: var(--brand-soft);
+  --color-brand-mid: var(--brand-mid);
   --color-brand-deep: var(--brand-deep);
-  --color-accent-mint: var(--accent-mint);
+  --color-brand-tint: var(--brand-tint);
+  --color-brand-wash: var(--brand-wash);
+  --color-brand-line: var(--brand-line);
+
+  /* ——— Lime scale (derived from the logo lime) ——— */
   --color-lime: var(--lime);
-  --color-lime-2: var(--lime-2);
-  --color-steel: var(--steel);
+  --color-lime-soft: var(--lime-soft);
+  --color-lime-ink: var(--lime-ink);
+  --color-lime-tint: var(--lime-tint);
+
+  /* ——— Ink scale ——— */
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+
+  /* ——— shadcn/ui token bridge ——— */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -80,107 +138,99 @@
 }
 
 :root {
-  --radius: 0.5rem;
-  --background: #f5fbf8;
+  --radius: 0.625rem;
+
+  /* Brand — unchanged from the logo */
+  --brand: #0f559f;
+  --brand-mid: #2e6093;
+  --brand-deep: #0b3a6b;
+  /* Derived blues */
+  --brand-tint: #eef4fb;
+  --brand-wash: #f4f8fc;
+  --brand-line: #dbe6f3;
+
+  /* Lime — unchanged from the logo */
+  --lime: #b7db13;
+  --lime-soft: #bbd53f;
+  /* Derived lime, darkened to clear AA as text on white (7.0:1) */
+  --lime-ink: #5f7405;
+  --lime-tint: #f4fade;
+
+  /* Ink */
+  --ink: #373737;
+  --ink-muted: #5b6672; /* 6.4:1 on white */
+  --ink-faint: #8995a3; /* meta only, never body copy */
+
+  /* Surfaces */
+  --background: #f6f8fb;
   --foreground: #373737;
   --card: #ffffff;
   --card-foreground: #373737;
   --popover: #ffffff;
   --popover-foreground: #373737;
+
+  /* shadcn roles */
   --primary: #0f559f;
   --primary-foreground: #ffffff;
-  --secondary: #fbfed3;
+  --secondary: #eef4fb;
   --secondary-foreground: #373737;
-  --muted: #eef5f2;
-  --muted-foreground: #6b7d90;
-  --accent: #deee8c;
-  --accent-foreground: #373737;
-  --destructive: #d64545;
+  --muted: #eef2f7;
+  --muted-foreground: #5b6672;
+  --accent: #eef4fb;
+  --accent-foreground: #0f559f;
+  --destructive: #c23434;
   --destructive-foreground: #ffffff;
-  --border: #dbe7e2;
-  --input: #dbe7e2;
+  --border: #dbe6f3;
+  --input: #dbe6f3;
   --ring: #0f559f;
   --chart-1: #0f559f;
   --chart-2: #b7db13;
   --chart-3: #2e6093;
-  --chart-4: #deee8c;
-  --chart-5: #a6b5c7;
-  --sidebar: #f5fbf8;
+  --chart-4: #8995a3;
+  --chart-5: #0b3a6b;
+  --sidebar: #f6f8fb;
   --sidebar-foreground: #373737;
   --sidebar-primary: #0f559f;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #deee8c;
-  --sidebar-accent-foreground: #373737;
-  --sidebar-border: #dbe7e2;
+  --sidebar-accent: #eef4fb;
+  --sidebar-accent-foreground: #0f559f;
+  --sidebar-border: #dbe6f3;
   --sidebar-ring: #0f559f;
 
-  --brand: #0f559f;
-  --brand-foreground: #ffffff;
-  --brand-soft: #fbfed3;
-  --brand-deep: #2e6093;
-  --accent-mint: #deee8c;
-  --lime: #b7db13;
-  --lime-2: #bbd53f;
-  --steel: #a6b5c7;
-}
+  /* Elevation — three tokens, no more */
+  --shadow-card: 0 1px 2px rgb(15 85 159 / 0.06), 0 2px 8px -2px rgb(11 58 107 / 0.08);
+  --shadow-hover: 0 2px 4px rgb(15 85 159 / 0.08), 0 12px 28px -10px rgb(11 58 107 / 0.18);
+  --shadow-pop: 0 24px 48px -24px rgb(11 58 107 / 0.35);
 
-.dark {
-  --background: #16222c;
-  --foreground: #eef5f2;
-  --card: #1d2b36;
-  --card-foreground: #eef5f2;
-  --popover: #1d2b36;
-  --popover-foreground: #eef5f2;
-  --primary: #2e6093;
-  --primary-foreground: #ffffff;
-  --secondary: #22313c;
-  --secondary-foreground: #eef5f2;
-  --muted: #22313c;
-  --muted-foreground: #a6b5c7;
-  --accent: #2a3a26;
-  --accent-foreground: #deee8c;
-  --destructive: #b03a3a;
-  --destructive-foreground: #ffffff;
-  --border: #2c3d49;
-  --input: #2c3d49;
-  --ring: #b7db13;
-  --chart-1: #0f559f;
-  --chart-2: #b7db13;
-  --chart-3: #2e6093;
-  --chart-4: #deee8c;
-  --chart-5: #a6b5c7;
-  --sidebar: #16222c;
-  --sidebar-foreground: #eef5f2;
-  --sidebar-primary: #b7db13;
-  --sidebar-primary-foreground: #16222c;
-  --sidebar-accent: #22313c;
-  --sidebar-accent-foreground: #deee8c;
-  --sidebar-border: #2c3d49;
-  --sidebar-ring: #b7db13;
-  --brand: #2e6093;
-  --brand-foreground: #ffffff;
-  --brand-soft: #22313c;
-  --brand-deep: #0b3a6b;
-  --accent-mint: #deee8c;
-  --lime: #b7db13;
-  --lime-2: #bbd53f;
-  --steel: #a6b5c7;
+  /* Motion */
+  --ease-out: cubic-bezier(0.2, 0.6, 0.2, 1);
+  --dur-fast: 150ms;
+  --dur-base: 240ms;
+  --dur-slow: 320ms;
+
+  /* Sticky chrome height, read by scroll-margin */
+  --chrome-h: 6rem;
 }
 
 @layer base {
   * {
-    border-color: var(--color-border);
+    border-color: var(--border);
   }
 
   html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+    background-color: var(--background);
+    color: var(--foreground);
     font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-synthesis-weight: none;
   }
 
   h1,
@@ -188,35 +238,77 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    letter-spacing: -0.02em;
+    font-weight: 600;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Figures always align in columns */
+  .tabular,
+  th,
+  td {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* One focus treatment, applied everywhere */
+  :focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+    border-radius: 4px;
   }
 
   ::selection {
-    background-color: var(--brand);
-    color: #ffffff;
+    background-color: var(--lime);
+    color: #15200a;
+  }
+
+  /* Images never collapse before they load */
+  img {
+    max-width: 100%;
+    height: auto;
   }
 }
 
-/* Anchor sections clear the sticky header + in-page sub-nav. */
+/* Anchor targets clear the sticky chrome. */
 [id] {
-  scroll-margin-top: 10rem;
+  scroll-margin-top: calc(var(--chrome-h) + 1.5rem);
 }
 
-/* Subtle on-scroll reveal — quiet, single pass, respects reduced motion. */
+/*
+ * ============================================================================
+ * Motion system
+ * ============================================================================
+ * Tier 0  none     — hero, dense lists, tables, chrome
+ * Tier 1  appear   — default content entrance (8px, 320ms, once)
+ * Tier 2  moment   — max 3 per page: stat count-up, journey, featured quote
+ * Tier 3  ambient  — hero parallax only, desktop only
+ */
 .reveal {
   opacity: 0;
-  transform: translateY(16px);
-  pointer-events: none;
+  transform: translate3d(0, 8px, 0);
   transition:
-    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity var(--dur-slow) var(--ease-out),
+    transform var(--dur-slow) var(--ease-out);
   will-change: opacity, transform;
 }
 
-.reveal.is-revealed {
+.reveal-moment {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition:
+    opacity 560ms var(--ease-out),
+    transform 560ms var(--ease-out);
+  will-change: opacity, transform;
+}
+
+.reveal.is-revealed,
+.reveal-moment.is-revealed {
   opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
+  transform: translate3d(0, 0, 0);
+  will-change: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -224,56 +316,174 @@
     scroll-behavior: auto;
   }
 
-  .reveal {
+  .reveal,
+  .reveal-moment {
     opacity: 1;
     transform: none;
     transition: none;
   }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/*
+ * ============================================================================
+ * Layout utilities
+ * ============================================================================
+ */
+
+/* Page gutter + measure */
+@utility shell {
+  margin-inline: auto;
+  max-width: 80rem;
+  padding-inline: 1rem;
+}
+
+@utility shell-narrow {
+  margin-inline: auto;
+  max-width: 52rem;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 640px) {
+  .shell,
+  .shell-narrow {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .shell,
+  .shell-narrow {
+    padding-inline: 2rem;
+  }
+}
+
+/* Vertical rhythm varies by section weight — never one value everywhere. */
+@utility band {
+  padding-block: clamp(3.25rem, 6.5vw, 5.5rem);
+}
+
+@utility band-feature {
+  padding-block: clamp(4.25rem, 8.5vw, 7.5rem);
+}
+
+@utility band-tight {
+  padding-block: clamp(2rem, 4vw, 3.25rem);
+}
+
+/* Reading measure */
+@utility measure {
+  max-width: 68ch;
+}
+
+@utility measure-tight {
+  max-width: 56ch;
 }
 
 @utility text-balance {
   text-wrap: balance;
 }
 
-/* Subtle brand gradient — never neon, never excessive. */
-@utility gradient-brand {
-  background-image: linear-gradient(135deg, #0f559f 0%, #2e6093 100%);
+/*
+ * ============================================================================
+ * Surface + elevation utilities
+ * ============================================================================
+ */
+@utility shadow-card {
+  box-shadow: var(--shadow-card);
 }
 
-@utility gradient-signal {
-  background-image: linear-gradient(135deg, #b7db13 0%, #bbd53f 100%);
+@utility shadow-hover {
+  box-shadow: var(--shadow-hover);
 }
 
-@utility gradient-soft {
-  background-image: linear-gradient(180deg, var(--brand-soft) 0%, #ffffff 100%);
+@utility shadow-pop {
+  box-shadow: var(--shadow-pop);
 }
 
-@utility glass-card {
-  background-color: #ffffff;
-  border: 1px solid var(--border);
+/* The one gradient left in the system: the hero scrim. */
+@utility hero-scrim {
+  background:
+    linear-gradient(
+      100deg,
+      rgb(11 58 107 / 0.92) 0%,
+      rgb(11 58 107 / 0.78) 32%,
+      rgb(15 85 159 / 0.42) 62%,
+      rgb(15 85 159 / 0.14) 100%
+    ),
+    linear-gradient(to top, rgb(11 58 107 / 0.55) 0%, transparent 45%);
 }
 
-/* Soft, layered shadows — quiet, not floating. */
-@utility shadow-elevated {
-  box-shadow:
-    0 1px 2px rgba(15, 85, 159, 0.05),
-    0 12px 40px -12px rgba(46, 96, 147, 0.16);
+/* Lime emphasis marker — the accent's primary job. */
+@utility rule-accent {
+  position: relative;
 }
 
-@utility shadow-brand {
-  box-shadow: 0 20px 50px -20px rgba(15, 85, 159, 0.45);
+.rule-accent::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0.15em;
+  bottom: 0.15em;
+  width: 3px;
+  border-radius: 3px;
+  background-color: var(--lime);
 }
 
-@utility shadow-signal {
-  box-shadow: 0 16px 40px -18px rgba(183, 219, 19, 0.55);
+/* Key-word highlight inside headings. */
+@utility mark-accent {
+  background-image: linear-gradient(
+    transparent 62%,
+    color-mix(in srgb, var(--lime) 45%, transparent) 62%
+  );
+  background-repeat: no-repeat;
 }
 
-/* Fine inner rule for quiet card definition. */
-@utility hairline {
-  box-shadow: inset 0 0 0 1px rgba(166, 181, 199, 0.28);
+/* Hairline separators used by the index-list archetype. */
+@utility divide-hairline {
+  border-color: var(--brand-line);
 }
 
-/* Constrain omnidimension widget container */
+/* Keeps the sticky mobile action bar from covering page content. */
+@utility pb-actionbar {
+  padding-bottom: calc(4.25rem + env(safe-area-inset-bottom, 0px));
+}
+
+@media (min-width: 768px) {
+  .pb-actionbar {
+    padding-bottom: 0;
+  }
+}
+
+/* Skip link — first focusable element on every page. */
+.skip-link {
+  position: absolute;
+  left: 0.75rem;
+  top: 0.75rem;
+  z-index: 100;
+  transform: translateY(-150%);
+  border-radius: 8px;
+  background-color: var(--brand);
+  color: #fff;
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* Constrain the omnidimension chat widget container. */
 #omni-widget-component {
   width: 60px !important;
   height: 60px !important;

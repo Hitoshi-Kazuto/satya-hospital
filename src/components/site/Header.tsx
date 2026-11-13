@@ -1,5 +1,5 @@
 import { NavLink, Link, useLocation } from "react-router-dom";
-import { useEffect, useState, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronDown, Menu, Phone, X } from "lucide-react";
 import { Logo } from "./Logo";
 import { contactInfo } from "@/lib/hospital-data";
@@ -31,7 +31,6 @@ const NAV = [
       { label: "Shoulder Surgery", to: "/orthopedics#shoulder-surgery" },
       { label: "Arthritis Types", to: "/orthopedics#arthritis-types" },
       { label: "Club Foot", to: "/orthopedics#club-foot" },
-      { label: "Hip Replacement", to: "/orthopedics#hip-replacement" },
       { label: "360 Degree Knee Care", to: "/orthopedics#knee-treatments" },
     ],
   },
@@ -64,27 +63,38 @@ const NAV = [
   },
 ] as const;
 
+/* Order follows the homepage, which now leads with the consultants. */
 const HOME_ANCHORS = [
   { id: "about", label: "About" },
-  { id: "specialities", label: "Specialities" },
   { id: "doctors", label: "Doctors" },
-  { id: "services", label: "Services" },
+  { id: "specialities", label: "Specialities" },
   { id: "technology", label: "Technology" },
+  { id: "services", label: "Services" },
   { id: "stories", label: "Patient Stories" },
   { id: "awards", label: "Standards" },
   { id: "contact", label: "Visit Us" },
 ] as const;
 
 export function Header() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   const [scrolled, setScrolled] = useState(false);
+  const [pastHero, setPastHero] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [activeAnchor, setActiveAnchor] = useState("");
+  const navRef = useRef<HTMLDivElement>(null);
   const mobileRef = useRef<HTMLDivElement>(null);
+  const mobileToggleRef = useRef<HTMLButtonElement>(null);
   const onHome = pathname === "/";
 
+  /* Condense the chrome once the page moves; reveal the in-page rail only
+     after the hero has left, so the fold isn't spent on navigation. */
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 8);
+      setPastHero(y > 460);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -108,176 +118,250 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [onHome]);
 
+  /* Close everything on navigation. */
   useEffect(() => {
-    const onClick = (e: MouseEvent) => {
-      if (mobileRef.current && !mobileRef.current.contains(e.target as Node)) {
-        setMobileOpen(false);
-      }
+    setMobileOpen(false);
+    setOpenMenu(null);
+  }, [pathname, hash]);
+
+  /* Dismiss on outside click and on Escape — a hover-only menu was
+     unreachable by keyboard entirely. */
+  useEffect(() => {
+    const onPointer = (e: MouseEvent) => {
+      const target = e.target as Node;
+      if (navRef.current && !navRef.current.contains(target)) setOpenMenu(null);
+
+      /* The toggle owns its own open/close — never let this handler act on
+         the same click, so the two can't fight over the state. */
+      if (mobileToggleRef.current?.contains(target)) return;
+      if (mobileRef.current && !mobileRef.current.contains(target)) setMobileOpen(false);
     };
-    document.addEventListener("click", onClick);
-    return () => document.removeEventListener("click", onClick);
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      setOpenMenu(null);
+      setMobileOpen(false);
+    };
+    document.addEventListener("click", onPointer);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("click", onPointer);
+      document.removeEventListener("keydown", onKey);
+    };
   }, []);
 
+  const toggleMenu = useCallback((label: string) => {
+    setOpenMenu((current) => (current === label ? null : label));
+  }, []);
+
+  const showRail = onHome && pastHero;
+
   return (
-    <header className="sticky top-0 z-50 w-full bg-white">
-      <div className="bg-[color:var(--brand)] text-white">
-        <div className="mx-auto flex h-11 max-w-7xl items-center justify-between gap-6 px-4 text-[11px] font-medium sm:px-6 lg:px-8">
-          <p className="hidden sm:block">Satya Trauma &amp; Maternity Centre · Barra 6, Kanpur</p>
-          <p className="sm:hidden">Barra 6, Kanpur</p>
-          <a
-            href={contactInfo.phoneHref}
-            className="flex items-center gap-2 transition hover:text-white/80"
-          >
-            <Phone className="h-3.5 w-3.5" />
-            <span className="hidden sm:inline">24×7 Emergency · </span>
-            {contactInfo.phone}
-          </a>
-        </div>
-      </div>
-
+    <header className="sticky top-0 z-50 w-full">
       <div
-        className={`border-b border-border transition-shadow duration-200 ${
-          scrolled
-            ? "bg-white/95 shadow-[0_4px_24px_-12px_rgba(46,96,147,0.25)] backdrop-blur"
-            : "bg-white"
-        }`}
+        className={cn(
+          "border-b border-brand-line bg-white transition-shadow duration-200",
+          scrolled && "shadow-card",
+        )}
       >
-        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:h-24 lg:px-8">
-          <Logo />
+        <div
+          className={cn(
+            "shell flex items-center justify-between gap-6 transition-[height] duration-300 ease-[cubic-bezier(.2,.6,.2,1)]",
+            scrolled ? "h-16 lg:h-18" : "h-20 lg:h-22",
+          )}
+        >
+          <Logo compact={scrolled} />
 
-          <nav className="hidden items-center gap-0.5 lg:flex">
-            {NAV.map((item) =>
-              item.children ? (
-                <div key={item.label} className="group relative">
-                  <Link
-                    to={item.to}
-                    className="flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium text-foreground/80 transition duration-200 hover:bg-[color:var(--brand-soft)] hover:text-[color:var(--brand)]"
-                  >
-                    {item.label}
-                    <ChevronDown className="h-3.5 w-3.5" />
-                  </Link>
-                  <div className="invisible absolute left-0 top-full z-50 min-w-[230px] pt-2 opacity-0 transition-all duration-150 group-hover:visible group-hover:opacity-100">
-                    <div className="rounded-2xl border border-border bg-white p-2 shadow-elevated">
-                      {item.children.map((c) => (
-                        <Link
-                          key={c.label}
-                          to={c.to}
-                          onClick={() => setMobileOpen(false)}
-                          className="block rounded-lg px-4 py-2.5 text-sm font-medium text-foreground/85 transition hover:bg-[color:var(--brand-soft)] hover:text-[color:var(--brand)]"
+          <div ref={navRef} className="hidden lg:block">
+            <nav aria-label="Primary">
+              <ul className="flex items-center gap-1">
+                {NAV.map((item) =>
+                  item.children ? (
+                    <li key={item.label} className="relative">
+                      <span className="flex items-center">
+                        <NavLink
+                          to={item.to}
+                          className={({ isActive }) =>
+                            cn(
+                              "relative py-2 pl-3 pr-1 text-sm font-medium transition-colors duration-150",
+                              "after:absolute after:inset-x-3 after:-bottom-0.5 after:h-[2px] after:rounded-full after:bg-lime after:transition-transform after:duration-200",
+                              isActive
+                                ? "text-brand after:scale-x-100"
+                                : "text-ink/80 hover:text-brand after:scale-x-0 hover:after:scale-x-100",
+                            )
+                          }
                         >
-                          {c.label}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <NavLink
-                  key={item.label}
-                  to={item.to}
-                  end={item.to === "/"}
-                  className={({ isActive }) =>
-                    `rounded-full px-4 py-2 text-sm font-medium transition duration-200 ${
-                      isActive
-                        ? "bg-[color:var(--brand-soft)] text-[color:var(--brand)]"
-                        : "text-foreground/80 hover:bg-[color:var(--brand-soft)]/60 hover:text-[color:var(--brand)]"
-                    }`
-                  }
-                >
-                  {item.label}
-                </NavLink>
-              ),
-            )}
-          </nav>
+                          {item.label}
+                        </NavLink>
+                        <button
+                          type="button"
+                          onClick={() => toggleMenu(item.label)}
+                          aria-expanded={openMenu === item.label}
+                          aria-controls={`menu-${item.label}`}
+                          aria-label={`${item.label} submenu`}
+                          className="grid h-9 w-7 place-items-center rounded-md text-ink/60 transition hover:text-brand"
+                        >
+                          <ChevronDown
+                            aria-hidden
+                            className={cn(
+                              "h-3.5 w-3.5 transition-transform duration-200",
+                              openMenu === item.label && "rotate-180",
+                            )}
+                          />
+                        </button>
+                      </span>
+
+                      <div
+                        id={`menu-${item.label}`}
+                        hidden={openMenu !== item.label}
+                        className="absolute left-0 top-full z-50 min-w-[16rem] pt-2"
+                      >
+                        <ul className="rounded-lg border border-brand-line bg-white p-1.5 shadow-pop">
+                          {item.children.map((c) => (
+                            <li key={c.label}>
+                              <Link
+                                to={c.to}
+                                onClick={() => setOpenMenu(null)}
+                                className="block rounded-md px-3.5 py-2.5 text-sm text-ink/85 transition duration-150 hover:bg-brand-tint hover:text-brand"
+                              >
+                                {c.label}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </li>
+                  ) : (
+                    <li key={item.label}>
+                      <NavLink
+                        to={item.to}
+                        end={item.to === "/"}
+                        className={({ isActive }) =>
+                          cn(
+                            "relative block px-3 py-2 text-sm font-medium transition-colors duration-150",
+                            "after:absolute after:inset-x-3 after:-bottom-0.5 after:h-[2px] after:rounded-full after:bg-lime after:transition-transform after:duration-200",
+                            isActive
+                              ? "text-brand after:scale-x-100"
+                              : "text-ink/80 hover:text-brand after:scale-x-0 hover:after:scale-x-100",
+                          )
+                        }
+                      >
+                        {item.label}
+                      </NavLink>
+                    </li>
+                  ),
+                )}
+              </ul>
+            </nav>
+          </div>
 
           <div className="flex items-center gap-2">
             <a
               href={contactInfo.phoneHref}
-              className="hidden items-center gap-2 rounded-full border border-border bg-white px-4 py-2 text-sm font-semibold text-[color:var(--brand)] transition duration-200 hover:border-[color:var(--brand)]/40 hover:shadow-elevated md:inline-flex"
+              className="hidden min-h-11 items-center gap-2 rounded-full border border-brand-line px-4 text-sm font-semibold text-brand transition duration-150 hover:border-brand/45 hover:bg-brand-tint md:inline-flex"
             >
-              <Phone className="h-4 w-4" />
+              <Phone aria-hidden className="h-4 w-4" />
               Emergency 24×7
             </a>
             <Link
               to="/appointment"
-              className="inline-flex items-center gap-2 rounded-full gradient-brand px-4 py-2.5 text-sm font-semibold text-white shadow-brand transition duration-200 hover:brightness-110 sm:px-5"
+              className="hidden min-h-11 items-center gap-2 rounded-full bg-brand px-5 text-sm font-semibold text-white transition duration-150 hover:bg-brand-deep hover:shadow-hover sm:inline-flex"
             >
               Book <span className="hidden sm:inline">Appointment</span>
             </Link>
             <button
+              type="button"
+              ref={mobileToggleRef}
               onClick={() => setMobileOpen((v) => !v)}
-              className="grid h-11 w-11 place-items-center rounded-full border border-border bg-white lg:hidden"
-              aria-label="Menu"
+              aria-expanded={mobileOpen}
+              aria-controls="mobile-nav"
+              className="grid h-11 w-11 place-items-center rounded-full border border-brand-line text-ink transition hover:border-brand/40 hover:text-brand lg:hidden"
             >
-              {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              <span className="sr-only">{mobileOpen ? "Close menu" : "Open menu"}</span>
+              {mobileOpen ? (
+                <X aria-hidden className="h-5 w-5" />
+              ) : (
+                <Menu aria-hidden className="h-5 w-5" />
+              )}
             </button>
           </div>
         </div>
       </div>
 
+      {/* In-page rail: appears only once the hero is behind you. */}
       {onHome && (
-        <nav className="border-t border-border bg-white" aria-label="In this page">
-          <div className="mx-auto flex max-w-7xl items-center gap-1 overflow-x-auto px-4 py-2 sm:px-6 lg:px-8">
+        <nav
+          aria-label="On this page"
+          className={cn(
+            "overflow-hidden border-b border-brand-line bg-white/95 backdrop-blur transition-[max-height,opacity] duration-300 ease-[cubic-bezier(.2,.6,.2,1)]",
+            showRail ? "max-h-14 opacity-100" : "max-h-0 opacity-0",
+          )}
+        >
+          <ul className="shell flex items-center gap-1 overflow-x-auto py-2">
             {HOME_ANCHORS.map((a) => (
-              <a
-                key={a.id}
-                href={`#${a.id}`}
-                className={cn(
-                  "whitespace-nowrap rounded-full px-3.5 py-1.5 text-[13px] font-medium transition duration-200",
-                  activeAnchor === a.id
-                    ? "bg-[color:var(--brand-soft)] text-[color:var(--brand)]"
-                    : "text-foreground/70 hover:bg-[color:var(--brand-soft)]/60 hover:text-[color:var(--brand)]",
-                )}
-              >
-                {a.label}
-              </a>
+              <li key={a.id}>
+                <a
+                  href={`#${a.id}`}
+                  aria-current={activeAnchor === a.id ? "true" : undefined}
+                  className={cn(
+                    "relative block whitespace-nowrap px-3 py-1.5 text-meta font-medium transition-colors duration-150",
+                    "after:absolute after:inset-x-3 after:bottom-0 after:h-[2px] after:rounded-full after:bg-lime after:transition-transform after:duration-200",
+                    activeAnchor === a.id
+                      ? "text-brand after:scale-x-100"
+                      : "text-ink/70 hover:text-brand after:scale-x-0 hover:after:scale-x-100",
+                  )}
+                >
+                  {a.label}
+                </a>
+              </li>
             ))}
-          </div>
+          </ul>
         </nav>
       )}
 
       {mobileOpen && (
-        <div className="border-b border-border bg-white lg:hidden" ref={mobileRef}>
-          <div className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4 sm:px-6">
+        <div
+          id="mobile-nav"
+          ref={mobileRef}
+          className="max-h-[calc(100dvh-7rem)] overflow-y-auto border-b border-brand-line bg-white lg:hidden"
+        >
+          <nav aria-label="Primary mobile" className="shell flex flex-col gap-0.5 py-4">
             {NAV.map((item) => (
-              <div key={item.label}>
+              <div key={item.label} className="border-b border-brand-line/70 last:border-b-0">
                 <NavLink
                   to={item.to}
                   end={item.to === "/"}
-                  onClick={() => setMobileOpen(false)}
                   className={({ isActive }) =>
-                    `block rounded-xl px-4 py-3 text-base font-medium ${
-                      isActive
-                        ? "bg-[color:var(--brand-soft)] text-[color:var(--brand)]"
-                        : "text-foreground/90"
-                    }`
+                    cn(
+                      "flex min-h-12 items-center rounded-md px-3 text-base font-medium",
+                      isActive ? "text-brand" : "text-ink/90",
+                    )
                   }
                 >
                   {item.label}
                 </NavLink>
                 {item.children && (
-                  <div className="ml-3 flex flex-col border-l border-border pl-3">
+                  <ul className="mb-2 ml-3 flex flex-col border-l-2 border-lime/40 pl-3">
                     {item.children.map((c) => (
-                      <Link
-                        key={c.label}
-                        to={c.to}
-                        onClick={() => setMobileOpen(false)}
-                        className="rounded-lg px-4 py-2 text-sm text-foreground/70 hover:text-[color:var(--brand)]"
-                      >
-                        {c.label}
-                      </Link>
+                      <li key={c.label}>
+                        <Link
+                          to={c.to}
+                          className="flex min-h-11 items-center rounded-md px-3 text-meta text-ink-muted transition hover:text-brand"
+                        >
+                          {c.label}
+                        </Link>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 )}
               </div>
             ))}
             <a
               href={contactInfo.phoneHref}
-              className="mt-2 inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-white px-4 py-3 text-sm font-semibold text-[color:var(--brand)]"
+              className="mt-3 inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-brand-line px-4 text-sm font-semibold text-brand"
             >
-              <Phone className="h-4 w-4" /> Call Emergency 24×7
+              <Phone aria-hidden className="h-4 w-4" /> Call Emergency 24×7
             </a>
-          </div>
+          </nav>
         </div>
       )}
     </header>

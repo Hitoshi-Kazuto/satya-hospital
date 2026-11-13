@@ -1,18 +1,18 @@
 import { Link } from "react-router-dom";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Facebook, Instagram, Mail, MapPin, MessageCircle, Phone, Youtube } from "lucide-react";
 import { Logo } from "./Logo";
 import { contactInfo } from "@/lib/hospital-data";
 
 function FooterCol({ title, links }: { title: string; links: [string, string][] }) {
   return (
     <div>
-      <h4 className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">{title}</h4>
-      <ul className="mt-4 space-y-2.5 text-sm">
+      <h2 className="text-label font-semibold uppercase text-lime">{title}</h2>
+      <ul className="mt-5 space-y-3 text-meta">
         {links.map(([label, to]) => (
           <li key={label}>
             <Link
               to={to}
-              className="text-white/75 transition duration-200 hover:text-[color:var(--accent-mint)]"
+              className="inline-block text-white/75 transition-colors duration-150 hover:text-white"
             >
               {label}
             </Link>
@@ -23,57 +23,75 @@ function FooterCol({ title, links }: { title: string; links: [string, string][] 
   );
 }
 
+const SOCIALS = [
+  { label: "Facebook", href: "https://www.facebook.com/satyahospitals", icon: Facebook },
+  { label: "Instagram", href: "https://www.instagram.com/satyahospital/", icon: Instagram },
+  {
+    label: "YouTube",
+    href: "https://www.youtube.com/channel/UC9nJ6i2w2ID3Yb41WvZYFSA",
+    icon: Youtube,
+  },
+  { label: "WhatsApp", href: contactInfo.whatsapp, icon: MessageCircle },
+];
+
 export function Footer() {
   return (
-    <footer className="mt-24 border-t border-border bg-[#0b3a6b] text-white">
-      <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 md:grid-cols-2 lg:grid-cols-5 lg:px-8">
+    <footer className="bg-brand-deep text-white">
+      <div aria-hidden className="h-[3px] w-full bg-lime" />
+      <div className="shell grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-5">
         <div className="lg:col-span-2">
           <Logo inverted />
-          <p className="mt-5 max-w-xs text-sm text-white/70">
+          <p className="measure-tight mt-6 text-meta text-white/70">
             A trusted name in orthopaedic, trauma, maternity and infertility care in Kanpur since
             1995.
           </p>
-          <div className="mt-6 space-y-2.5 text-sm text-white/80">
-            <p className="flex items-start gap-2">
-              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[color:var(--accent-mint)]" />
-              {contactInfo.address}
-            </p>
-            <p className="flex items-center gap-2">
-              <Phone className="h-4 w-4 shrink-0 text-[color:var(--accent-mint)]" />
-              {contactInfo.phone} · {contactInfo.altPhone}
-            </p>
-            <p className="flex items-center gap-2">
-              <Mail className="h-4 w-4 shrink-0 text-[color:var(--accent-mint)]" />
-              <a
-                href={contactInfo.emailHref}
-                className="transition hover:text-[color:var(--accent-mint)]"
-              >
-                {contactInfo.email}
-              </a>
-            </p>
-          </div>
-          <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
-            {[
-              { label: "Facebook", href: "https://www.facebook.com/satyahospitals" },
-              { label: "Instagram", href: "https://www.instagram.com/satyahospital/" },
-              {
-                label: "YouTube",
-                href: "https://www.youtube.com/channel/UC9nJ6i2w2ID3Yb41WvZYFSA",
-              },
-              { label: "WhatsApp", href: contactInfo.whatsapp },
-            ].map((s) => (
-              <a
-                key={s.label}
-                href={s.href}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={s.label}
-                className="text-xs font-medium text-white/70 underline-offset-4 transition duration-200 hover:text-[color:var(--accent-mint)] hover:underline"
-              >
-                {s.label}
-              </a>
+          <dl className="mt-7 space-y-3.5 text-meta text-white/80">
+            <div className="flex items-start gap-3">
+              <dt>
+                <span className="sr-only">Address</span>
+                <MapPin aria-hidden className="mt-0.5 h-4 w-4 shrink-0 text-lime" />
+              </dt>
+              <dd>{contactInfo.address}</dd>
+            </div>
+            <div className="flex items-start gap-3">
+              <dt>
+                <span className="sr-only">Phone</span>
+                <Phone aria-hidden className="mt-0.5 h-4 w-4 shrink-0 text-lime" />
+              </dt>
+              <dd className="tabular">
+                {contactInfo.phone} · {contactInfo.altPhone}
+              </dd>
+            </div>
+            <div className="flex items-start gap-3">
+              <dt>
+                <span className="sr-only">Email</span>
+                <Mail aria-hidden className="mt-0.5 h-4 w-4 shrink-0 text-lime" />
+              </dt>
+              <dd>
+                <a
+                  href={contactInfo.emailHref}
+                  className="transition-colors duration-150 hover:text-lime"
+                >
+                  {contactInfo.email}
+                </a>
+              </dd>
+            </div>
+          </dl>
+          <ul className="mt-7 flex flex-wrap items-center gap-2">
+            {SOCIALS.map(({ label, href, icon: Icon }) => (
+              <li key={label}>
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="grid h-11 w-11 place-items-center rounded-full border border-white/20 text-white/75 transition duration-150 hover:border-lime hover:text-lime"
+                >
+                  <span className="sr-only">{label}</span>
+                  <Icon aria-hidden className="h-[18px] w-[18px]" />
+                </a>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
 
         <FooterCol
@@ -112,7 +130,7 @@ export function Footer() {
         />
       </div>
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-6 text-xs text-white/60 sm:flex-row sm:px-6 lg:px-8">
+        <div className="shell flex flex-col items-center justify-between gap-2 py-6 text-meta text-white/55 sm:flex-row">
           <p>© {new Date().getFullYear()} Satya Hospital, Kanpur. All rights reserved.</p>
           <p>Since 1995 · Trauma &amp; Maternity Center</p>
         </div>

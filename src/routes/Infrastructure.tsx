@@ -1,22 +1,28 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { PageHeader, SectionHeader } from "@/components/site/PageHeader";
-import { Reveal } from "@/components/site/Reveal";
+import { PageHeader, SectionHeading } from "@/components/site/PageHeader";
+import { Reveal, stagger } from "@/components/site/Reveal";
+import { FeatureBand } from "@/components/site/sections/FeatureBand";
 import { btn } from "@/components/site/buttons";
+import { cn } from "@/lib/utils";
 import { infrastructure } from "@/lib/hospital-data";
-import facOt from "@/assets/ot-0.jpeg";
-import ot1 from "@/assets/ot-1.jpeg";
-import ot2 from "@/assets/ot-2.jpeg";
-import ot3 from "@/assets/ot-3.png";
-import ot4 from "@/assets/ot-4.jpeg";
-import ot5 from "@/assets/ot-5.jpeg";
-import ot6 from "@/assets/ot-6.png";
-import ot7 from "@/assets/ot-7.png";
-import infra1 from "@/assets/infra-1.png";
-import infra2 from "@/assets/infra-2.png";
-import infra3 from "@/assets/infra-3.png";
-import infra4 from "@/assets/infra-4.png";
+import facOt from "@/assets/ot-0.webp";
+import ot1 from "@/assets/ot-1.webp";
+import ot2 from "@/assets/ot-2.webp";
+import ot3 from "@/assets/ot-3.webp";
+import ot4 from "@/assets/ot-4.webp";
+import ot5 from "@/assets/ot-5.webp";
+import ot6 from "@/assets/ot-6.webp";
+import ot7 from "@/assets/ot-7.webp";
+import infra1 from "@/assets/infra-1.webp";
+import infra2 from "@/assets/infra-2.webp";
+import infra3 from "@/assets/infra-3.webp";
+import infra4 from "@/assets/infra-4.webp";
+import infra5 from "@/assets/infra-5.webp";
+
+const theatres = [facOt, ot1, ot2, ot3, ot4, ot5, ot6, ot7];
+const infraImages = [infra1, infra2, infra3, infra4, infra5];
 
 function Infrastructure() {
   return (
@@ -27,105 +33,95 @@ function Infrastructure() {
         intro="Operation theatres, diagnostics, emergency and patient rooms built to modern standards of sterility, monitoring and comfort."
       />
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-        <Reveal>
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-            {[infra1, infra2, infra3, infra4].map((s, i) => (
-              <img
-                key={i}
-                src={s}
-                alt="Satya Hospital infrastructure"
-                loading="lazy"
-                className="h-56 w-full rounded-2xl object-cover shadow-elevated md:h-64"
-              />
-            ))}
-          </div>
-        </Reveal>
+      <section className="band-tight">
+        {/* Five across from md. On narrow screens the odd one out runs the
+            full width as a banner rather than sitting alone in a half-row. */}
+        <div className="shell grid grid-cols-2 gap-4 md:grid-cols-5">
+          {infraImages.map((src, i) => (
+            <img
+              key={i}
+              src={src}
+              alt="Satya Hospital infrastructure"
+              loading="lazy"
+              decoding="async"
+              className={cn(
+                "w-full rounded-lg object-cover shadow-card",
+                i === infraImages.length - 1
+                  ? "col-span-2 aspect-[16/9] md:col-span-1 md:aspect-[4/5]"
+                  : "aspect-[4/5]",
+              )}
+            />
+          ))}
+        </div>
       </section>
 
-      <section className="bg-[color:var(--brand-soft)]/40 py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="border-y border-brand-line bg-white band">
+        <div className="shell">
           <Reveal>
-            <SectionHeader eyebrow="What's Inside" title="Hospital infrastructure" />
+            <SectionHeading eyebrow="What's Inside" title="Hospital infrastructure" />
           </Reveal>
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <dl className="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
             {infrastructure.map(({ title, icon: Icon, desc }, i) => (
-              <Reveal key={title} delay={Math.min(i, 7) * 60} className="h-full">
-                <div className="h-full rounded-2xl border border-border bg-white p-6 shadow-elevated/50 transition duration-200 hover:-translate-y-0.5 hover:shadow-elevated">
-                  <span className="grid h-12 w-12 place-items-center rounded-xl gradient-brand text-white">
-                    <Icon className="h-6 w-6" />
-                  </span>
-                  <h3 className="mt-4 font-display text-lg font-semibold text-foreground">
-                    {title}
-                  </h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{desc}</p>
+              <Reveal key={title} delay={stagger(i)}>
+                <div className="border-t border-brand-line pt-5">
+                  <Icon aria-hidden className="h-5 w-5 text-brand" />
+                  <dt className="mt-3 font-display text-h4 text-ink">{title}</dt>
+                  <dd className="mt-1.5 text-meta text-ink-muted">{desc}</dd>
                 </div>
+              </Reveal>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      <section className="band">
+        <div className="shell">
+          <Reveal>
+            <SectionHeading
+              eyebrow="Operation Theatres"
+              title="Our modular operation theatres"
+              intro="HEPA-filtered, laminar-flow theatres designed for zero-infection surgery."
+            />
+          </Reveal>
+          {/* Editorial mosaic: the lead image carries the section, the rest
+              support it — rather than eight identical tiles. */}
+          <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-4">
+            {theatres.map((src, i) => (
+              <Reveal
+                key={i}
+                delay={stagger(i, 50)}
+                className={i === 0 ? "col-span-2 row-span-2" : ""}
+              >
+                <img
+                  src={src}
+                  alt="Modular operation theatre"
+                  loading="lazy"
+                  decoding="async"
+                  className={`w-full rounded-lg object-cover shadow-card ${
+                    i === 0 ? "aspect-square" : "aspect-[4/3]"
+                  }`}
+                />
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-        <Reveal>
-          <SectionHeader
-            eyebrow="Operation Theatres"
-            title="Our modular operation theatres"
-            intro="HEPA-filtered, laminar-flow theatres designed for zero-infection surgery."
-          />
-        </Reveal>
-        <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">
-          {[facOt, ot1, ot2, ot3, ot4, ot5, ot6, ot7].map((s, i) => (
-            <Reveal
-              key={i}
-              delay={Math.min(i, 6) * 60}
-              className={i === 0 ? "col-span-2 row-span-2" : ""}
-            >
-              <img
-                src={s}
-                alt="Modular operation theatre"
-                loading="lazy"
-                className="h-full w-full rounded-2xl object-cover shadow-elevated"
-              />
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <Reveal>
-          <div className="rounded-[2.5rem] gradient-brand p-10 text-white shadow-brand sm:p-14">
-            <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[color:var(--accent-mint)]">
-                  Facilities
-                </p>
-                <h2 className="mt-2 font-display text-3xl font-semibold sm:text-4xl">
-                  Infrastructure for surgery and recovery
-                </h2>
-                <p className="mt-3 max-w-lg leading-relaxed text-white/80">
-                  Operation theatres, diagnostics, emergency and patient rooms built to modern
-                  standards.
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-3 lg:justify-end">
-                <Link
-                  to="/facilities"
-                  className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-[color:var(--brand)] shadow-elevated transition duration-200 hover:bg-[color:var(--brand-soft)]"
-                >
-                  Explore facilities <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link
-                  to="/services"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white transition duration-200 hover:bg-white/20"
-                >
-                  Our services
-                </Link>
-              </div>
-            </div>
-          </div>
-        </Reveal>
-      </section>
+      <FeatureBand
+        eyebrow="Facilities"
+        title="Infrastructure for surgery and recovery"
+        intro="Operation theatres, diagnostics, emergency and patient rooms built to modern standards."
+        actions={
+          <>
+            <Link to="/facilities" className={btn.onDark}>
+              Explore facilities <ArrowRight aria-hidden className="h-4 w-4" />
+            </Link>
+            <Link to="/services" className={btn.onDarkGhost}>
+              Our services
+            </Link>
+          </>
+        }
+      />
     </SiteLayout>
   );
 }
