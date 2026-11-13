@@ -20,6 +20,11 @@ dist-ssr
 .wrangler/
 .dev.vars
 
+# Local Claude Code tooling — vendored skills are machine-local, not app code.
+# (.claude/settings.json is deliberately not ignored, so shared project
+# permissions can still be committed if ever wanted.)
+.claude/skills/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
