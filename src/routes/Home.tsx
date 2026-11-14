@@ -168,8 +168,10 @@ function ActionRail() {
           {items.map(({ icon: Icon, label, to, href }, i) => {
             const inner = (
               <>
-                <Icon aria-hidden className="h-5 w-5 text-brand" />
-                <span className="font-semibold text-ink group-hover:text-brand">{label}</span>
+                <Icon aria-hidden className="h-6 w-6 shrink-0 text-brand md:h-5 md:w-5" />
+                <span className="text-balance font-semibold text-ink group-hover:text-brand">
+                  {label}
+                </span>
                 <ArrowRight
                   aria-hidden
                   className="ml-auto hidden h-4 w-4 shrink-0 text-brand opacity-0 transition-all duration-150 group-hover:translate-x-0.5 group-hover:opacity-100 lg:block"
@@ -202,8 +204,18 @@ function ActionRail() {
   );
 }
 
+/*
+ * Mobile stacks and centres each action inside its quadrant, so the four
+ * tiles read as a deliberate grid. Left-aligned rows looked accidental:
+ * labels of different lengths left ragged gaps against the dividers, and
+ * nothing sat at a consistent distance from them.
+ *
+ * From md the rail is 4-across and there is room for the row form again.
+ */
 const railInner =
-  "group flex min-h-16 items-center gap-3 px-4 py-4 text-meta transition-colors duration-150 hover:bg-brand-tint sm:px-5";
+  "group flex h-full flex-col items-center justify-center gap-2.5 px-3 py-6 text-center text-meta " +
+  "transition-colors duration-150 hover:bg-brand-tint " +
+  "md:flex-row md:justify-start md:gap-3 md:px-5 md:py-4 md:text-left";
 
 function cnRail(i: number) {
   return [
