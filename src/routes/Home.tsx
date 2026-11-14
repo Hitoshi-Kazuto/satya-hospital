@@ -162,16 +162,10 @@ function ActionRail() {
   ];
 
   return (
-    <section aria-label="Quick actions" className="relative z-10 bg-transparent">
-      {/*
-       * Below lg the rail sits clear of the hero with real space around it.
-       * It used to be pulled up by a single pixel, which isn't enough to read
-       * as a deliberate overlap — it just looked like the card had slipped
-       * and clipped the blue panel. The overlap only earns its keep at lg,
-       * where it covers most of the card's height and clearly ties the two
-       * together.
-       */}
-      <div className="shell mt-8 lg:-mt-10">
+    <section aria-label="Quick actions">
+      {/* The rail sits clear of the hero at every width — no overlap, one
+          spacing rule, so it reads the same on a phone as on a desktop. */}
+      <div className="shell mt-8">
         <ul className="grid grid-cols-2 overflow-hidden rounded-lg border border-brand-line bg-white shadow-card md:grid-cols-4">
           {items.map(({ icon: Icon, label, to, href }, i) => {
             const inner = (
