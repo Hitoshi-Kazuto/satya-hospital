@@ -42,7 +42,7 @@ function Departments() {
       <section className="border-y border-brand-line bg-white band-tight">
         <div className="shell">
           <Reveal>
-            <h2 className="font-display text-h2 text-ink">
+            <h2 className="font-display text-h2 font-bold text-ink">
               Orthopaedic treatments we specialise in
             </h2>
           </Reveal>

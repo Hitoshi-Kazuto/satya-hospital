@@ -3,7 +3,7 @@ import { ArrowRight, CheckCircle2, Award, ShieldCheck, Users, Clock } from "luci
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { PageHeader, SectionHeading } from "@/components/site/PageHeader";
 import { Reveal, stagger } from "@/components/site/Reveal";
-import { DoctorProfile } from "@/components/site/DoctorProfile";
+import { DoctorProfile, doctorGridCell } from "@/components/site/DoctorProfile";
 import { btn } from "@/components/site/buttons";
 import { doctors, hospitalValues, stats } from "@/lib/hospital-data";
 import facOt from "@/assets/ot-0.webp";
@@ -111,7 +111,7 @@ function About() {
               <Reveal key={title} delay={stagger(i)}>
                 <div className="border-t border-brand-line pt-5">
                   <Icon aria-hidden className="h-5 w-5 text-brand" />
-                  <dt className="mt-3 font-display text-h4 text-ink">{title}</dt>
+                  <dt className="mt-3 font-display text-h4 font-bold text-brand-deep">{title}</dt>
                   <dd className="mt-1.5 text-meta text-ink-muted">{desc}</dd>
                 </div>
               </Reveal>
@@ -129,7 +129,7 @@ function About() {
             {hospitalValues.map(({ title, desc }, i) => (
               <Reveal key={title} delay={stagger(i)} as="li">
                 <div className="rule-accent pl-5">
-                  <h3 className="font-display text-h3 text-ink">{title}</h3>
+                  <h3 className="font-display text-h3 font-bold text-brand-deep">{title}</h3>
                   <p className="mt-2 text-meta text-ink-muted">{desc}</p>
                 </div>
               </Reveal>
@@ -145,7 +145,7 @@ function About() {
           </Reveal>
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {doctors.map((d, i) => (
-              <Reveal key={d.slug} delay={stagger(i, 70)} className="h-full">
+              <Reveal key={d.slug} delay={stagger(i, 70)} className={doctorGridCell}>
                 <DoctorProfile doctor={d} />
               </Reveal>
             ))}

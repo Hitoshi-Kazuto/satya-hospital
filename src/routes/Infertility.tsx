@@ -2,11 +2,15 @@ import { useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { PageHeader } from "@/components/site/PageHeader";
+import { PageHeader, SectionHeading } from "@/components/site/PageHeader";
+import { Reveal } from "@/components/site/Reveal";
+import { DoctorProfile } from "@/components/site/DoctorProfile";
 import { TopicSections } from "@/components/site/sections/TopicSections";
 import { FeatureBand } from "@/components/site/sections/FeatureBand";
 import { btn } from "@/components/site/buttons";
 import { infertilityServices, doctors } from "@/lib/hospital-data";
+
+const fertilityDoctors = doctors.filter((d) => d.slug === "dr-manisha-agarwal");
 
 function Infertility() {
   const { hash } = useLocation();
@@ -41,6 +45,21 @@ function Infertility() {
         </ul>
       </PageHeader>
 
+      <section className="border-b border-brand-line bg-white band">
+        <div className="shell">
+          <Reveal>
+            <SectionHeading title="Meet Your Fertility Specialist" />
+          </Reveal>
+          <div className="mt-10 grid gap-6">
+            {fertilityDoctors.map((d, i) => (
+              <Reveal key={d.slug} delay={i * 70}>
+                <DoctorProfile doctor={d} layout="horizontal" />
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <TopicSections groups={[{ label: "", topics: [...infertilityServices] }]} />
 
       <FeatureBand
@@ -59,7 +78,7 @@ function Infertility() {
         }
         aside={
           <div className="rounded-lg border border-white/15 bg-white/5 p-8">
-            <h2 className="font-display text-h3 text-white">Our fertility services</h2>
+            <h2 className="font-display text-h3 font-bold text-white">Our fertility services</h2>
             <ul className="mt-5 flex flex-wrap gap-2">
               {infertilityServices.map((t) => (
                 <li key={t.slug}>

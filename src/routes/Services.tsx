@@ -68,7 +68,7 @@ function Services() {
               <Reveal key={name} delay={stagger(i, 50)}>
                 <article className="grid gap-5 border-b border-brand-line py-8 lg:grid-cols-[18rem_1fr] lg:gap-12">
                   <div>
-                    <h2 className="font-display text-h3 text-ink">{name}</h2>
+                    <h2 className="font-display text-h3 font-bold text-brand-deep">{name}</h2>
                     <p className="mt-2 text-meta text-ink-muted">{desc}</p>
                   </div>
                   <ul className="grid gap-x-8 gap-y-2.5 sm:grid-cols-2">
@@ -105,7 +105,7 @@ function Services() {
                     </CardIcon>
                     <span className="tabular font-display text-h2 text-brand">{price}</span>
                   </div>
-                  <h3 className="mt-5 font-display text-h3 text-ink">{name}</h3>
+                  <h3 className="mt-5 font-display text-h3 font-bold text-brand-deep">{name}</h3>
                   <ul className="mt-4 flex-1 space-y-2.5 text-meta text-ink/85">
                     {points.map((p) => (
                       <li key={p} className="flex items-start gap-2">
@@ -145,7 +145,7 @@ function Services() {
                     to={s.to}
                     className="group flex min-h-14 items-center justify-between gap-4 py-4"
                   >
-                    <span className="font-display text-h4 text-ink transition-colors duration-150 group-hover:text-brand">
+                    <span className="font-display text-h4 font-bold text-brand-deep transition-colors duration-150 group-hover:text-brand">
                       {s.label}
                     </span>
                     <ArrowRight
@@ -160,7 +160,9 @@ function Services() {
 
           <Reveal delay={80}>
             <div className="rounded-lg border border-brand-line bg-white p-8 shadow-card">
-              <h2 className="font-display text-h3 text-ink">Hospital facilities</h2>
+              <h2 className="font-display text-h3 font-bold text-brand-deep">
+                Hospital facilities
+              </h2>
               <ul className="mt-5 grid gap-x-8 gap-y-2.5 sm:grid-cols-2">
                 {facilities.map((f) => (
                   <li key={f} className="flex items-start gap-2 text-meta text-ink/85">

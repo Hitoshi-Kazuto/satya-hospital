@@ -37,7 +37,7 @@ export function PageHeader({
             </li>
           </ol>
         </nav>
-        <h1 className="mt-5 max-w-4xl font-display text-h1 text-white">{title}</h1>
+        <h1 className="mt-5 max-w-4xl font-display text-h1 font-bold text-white">{title}</h1>
         {intro && <p className="measure mt-5 text-lead text-white/80">{intro}</p>}
         {children}
       </div>
@@ -74,28 +74,31 @@ export function SectionHeading({
       {eyebrow && (
         <p
           className={cn(
-            "flex items-center gap-2.5 text-label font-semibold uppercase",
-            center && "justify-center",
-            dark ? "text-lime" : "text-lime-ink",
+            "inline-flex items-center gap-2 rounded-full px-3 py-1 text-label font-bold uppercase",
+            dark ? "bg-lime/15 text-lime" : "bg-lime-tint text-lime-ink ring-1 ring-lime/40",
           )}
         >
-          <span aria-hidden className="h-[2px] w-6 rounded-full bg-lime" />
+          <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-lime" />
           {eyebrow}
         </p>
       )}
       <Tag
         className={cn(
-          "font-display text-h2",
-          eyebrow ? "mt-3.5" : "",
+          "font-display text-h2 font-bold",
+          eyebrow ? "mt-4" : "",
           dark ? "text-white" : "text-ink",
         )}
       >
         {title}
       </Tag>
+      <span
+        aria-hidden
+        className={cn("mt-4 block h-1 w-14 rounded-full bg-lime", center && "mx-auto")}
+      />
       {intro && (
         <p
           className={cn(
-            "measure mt-4 text-lead",
+            "measure mt-5 text-lead",
             center && "mx-auto",
             dark ? "text-white/80" : "text-ink-muted",
           )}

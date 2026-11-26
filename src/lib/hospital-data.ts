@@ -828,7 +828,7 @@ export const doctors: Doctor[] = [
     name: "Dr. Manisha Agrawal",
     qualifications: "MBBS (Gold Medalist), MS, DNB, FICMCH · Senior Secretary KOGS",
     specialty: "Gynaecologist & Infertility Specialist",
-    experience: "25+ years",
+    experience: "35+ years",
     focus: [
       "High-risk Obstetrics",
       "Infertility Evaluation & IVF Counselling",
@@ -871,26 +871,23 @@ export const doctors: Doctor[] = [
   },
 ];
 
-export const testimonials = [
-  {
-    name: "Ravi Kumar",
-    role: "Knee Replacement Patient",
-    quote:
-      "Dr. Agrawal and the team gave me my life back. From consultation to recovery, the care was outstanding.",
-  },
-  {
-    name: "Priya Sharma",
-    role: "Maternity Patient",
-    quote:
-      "The maternity unit felt like a five-star experience. Dr. Manisha's calm guidance meant everything to us.",
-  },
-  {
-    name: "Anil Verma",
-    role: "Trauma Patient",
-    quote:
-      "After a road accident, Satya's 24×7 trauma team acted within minutes. They truly saved my father's life.",
-  },
-];
+export type Review = {
+  name: string;
+  /** Short label shown under the name, e.g. "Knee Replacement". */
+  treatment?: string;
+  rating: 1 | 2 | 3 | 4 | 5;
+  /** Original wording — Hindi, English or Hinglish, as the patient wrote it. */
+  text: string;
+};
+
+/*
+ * Patient reviews for the home-page carousel. The section stays hidden until
+ * this list has entries. Copy real reviews here (e.g. from the hospital's
+ * Google Business profile) in the patient's own words. Example shape:
+ *
+ *   { name: "R. Kumar", treatment: "Knee Replacement", rating: 5, text: "..." },
+ */
+export const reviews: Review[] = [];
 
 export const insuranceLogos = [
   "Star Health",

@@ -26,7 +26,9 @@ function EnquiryForm() {
         <span className="grid h-14 w-14 place-items-center rounded-full bg-brand-tint text-brand">
           <CheckCircle2 aria-hidden className="h-7 w-7" />
         </span>
-        <h2 className="mt-5 font-display text-h2 text-ink">Thank you — your enquiry is with us</h2>
+        <h2 className="mt-5 font-display text-h2 font-bold text-ink">
+          Thank you — your enquiry is with us
+        </h2>
         <p className="measure-tight mt-3 text-meta text-ink-muted">
           Our front office will get back to you during OPD hours (10 AM – 3 PM). For urgent
           emergencies, please call the 24×7 helpline instead.
@@ -43,7 +45,7 @@ function EnquiryForm() {
       onSubmit={onSubmit}
       className="rounded-lg border border-brand-line bg-white p-8 shadow-card"
     >
-      <h2 className="font-display text-h2 text-ink">Send an enquiry</h2>
+      <h2 className="font-display text-h2 font-bold text-ink">Send an enquiry</h2>
       <p className="mt-2 text-meta text-ink-muted">
         We typically respond within a few hours during OPD time.
       </p>
@@ -153,7 +155,7 @@ function Contact() {
             {channels.map(({ icon: Icon, title, value, href }) => (
               <div key={title} className="border-t border-brand-line pt-5">
                 <Icon aria-hidden className="h-5 w-5 text-brand" />
-                <dt className="mt-3 font-display text-h4 text-ink">{title}</dt>
+                <dt className="mt-3 font-display text-h4 font-bold text-brand-deep">{title}</dt>
                 <dd className="mt-1.5">
                   <a
                     href={href}

@@ -29,9 +29,9 @@ import { btn } from "@/components/site/buttons";
 import { Reveal, stagger } from "@/components/site/Reveal";
 import { IndexList } from "@/components/site/sections/IndexList";
 import { FeatureBand } from "@/components/site/sections/FeatureBand";
-import { Testimony } from "@/components/site/sections/Testimony";
+import { ReviewMarquee } from "@/components/site/sections/ReviewMarquee";
 import { Card, CardIcon } from "@/components/site/sections/Card";
-import { DoctorProfile } from "@/components/site/DoctorProfile";
+import { DoctorProfile, doctorGridCell } from "@/components/site/DoctorProfile";
 import { HeroBackdrop, HeroDots, useHeroSlideshow } from "@/components/site/HeroSlideshow";
 import { cn } from "@/lib/utils";
 import {
@@ -41,7 +41,7 @@ import {
   faqs,
   insuranceLogos,
   orthoTreatments,
-  testimonials,
+  reviews,
   services,
   stats,
   contactInfo,
@@ -70,7 +70,7 @@ function Home() {
       <Services />
       <Treatments />
       <Journey />
-      <Stories />
+      <Reviews />
       <Awards />
       <Resources />
       <Insurance />
@@ -323,7 +323,7 @@ function Doctors() {
 
         <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {doctors.map((d, i) => (
-            <Reveal key={d.slug} delay={stagger(i, 70)} className="h-full">
+            <Reveal key={d.slug} delay={stagger(i, 70)} className={doctorGridCell}>
               <DoctorProfile doctor={d} />
             </Reveal>
           ))}
@@ -521,7 +521,7 @@ function Journey() {
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <div>
-                  <h3 className="font-display text-h3 text-ink">{s.t}</h3>
+                  <h3 className="font-display text-h3 font-bold text-brand-deep">{s.t}</h3>
                   <p className="mt-1.5 text-meta text-ink-muted">{s.d}</p>
                 </div>
               </div>
@@ -533,21 +533,23 @@ function Journey() {
   );
 }
 
-/* ---------- STORIES ---------- */
-function Stories() {
+/* ---------- REVIEWS ---------- */
+/* Hidden until `reviews` in hospital-data has entries. */
+function Reviews() {
+  if (reviews.length === 0) return null;
   return (
-    <section id="stories" className="band">
+    <section id="reviews" className="band overflow-hidden">
       <div className="shell">
         <Reveal>
           <SectionHeading
-            eyebrow="Patient Stories"
-            title="What patients say"
-            intro="Feedback shared by patients and their families after treatment."
+            eyebrow="Patient Reviews"
+            title="What our patients say"
+            intro="Reviews shared by patients and their families."
           />
         </Reveal>
-        <div className="mt-12">
-          <Testimony quotes={testimonials} />
-        </div>
+      </div>
+      <div className="mx-auto mt-10 max-w-[96rem]">
+        <ReviewMarquee reviews={reviews} />
       </div>
     </section>
   );
@@ -592,7 +594,7 @@ function Awards() {
             <Reveal key={title} delay={stagger(i)}>
               <div className="border-t border-brand-line pt-5">
                 <Icon aria-hidden className="h-5 w-5 text-brand" />
-                <dt className="mt-3 font-display text-h4 text-ink">{title}</dt>
+                <dt className="mt-3 font-display text-h4 font-bold text-brand-deep">{title}</dt>
                 <dd className="mt-1.5 text-meta text-ink-muted">{desc}</dd>
               </div>
             </Reveal>
@@ -649,7 +651,7 @@ function Resources() {
                 <CardIcon>
                   <r.icon aria-hidden className="h-[18px] w-[18px]" />
                 </CardIcon>
-                <h3 className="mt-5 font-display text-h4 text-ink">{r.title}</h3>
+                <h3 className="mt-5 font-display text-h4 font-bold text-brand-deep">{r.title}</h3>
                 <p className="mt-2 flex-1 text-meta text-ink-muted">{r.desc}</p>
                 <span className="mt-5 inline-flex items-center gap-1.5 text-meta font-semibold text-brand">
                   Read guide
@@ -680,7 +682,7 @@ function Insurance() {
               <span aria-hidden className="h-[2px] w-6 rounded-full bg-lime" />
               Cashless Insurance
             </p>
-            <h2 className="mt-3 font-display text-h3 text-ink">
+            <h2 className="mt-3 font-display text-h3 font-bold text-brand-deep">
               Empanelled with all major insurers &amp; TPAs
             </h2>
             <p className="mt-2 text-meta text-ink-muted">
@@ -707,15 +709,15 @@ function Insurance() {
 function FAQ() {
   return (
     <section className="band">
-      <div className="shell-narrow">
+      <div className="shell">
         <Reveal>
-          <SectionHeading center eyebrow="FAQ" title="Frequently asked questions" />
+          <SectionHeading eyebrow="FAQ" title="Frequently asked questions" />
         </Reveal>
-        <Reveal delay={60} className="mt-10">
+        <Reveal delay={60} className="mt-10 max-w-4xl">
           <Accordion type="single" collapsible className="w-full border-t border-brand-line">
             {faqs.map((f, i) => (
               <AccordionItem key={f.q} value={`item-${i}`} className="border-b border-brand-line">
-                <AccordionTrigger className="py-5 text-left font-display text-h4 text-ink hover:no-underline data-[state=open]:text-brand">
+                <AccordionTrigger className="py-5 text-left font-display text-h4 font-bold text-brand-deep hover:no-underline data-[state=open]:text-brand">
                   {f.q}
                 </AccordionTrigger>
                 <AccordionContent className="pb-5 text-meta text-ink-muted">
@@ -759,7 +761,9 @@ function Visit() {
         <div className="mt-12 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
           <Reveal>
             <div className="h-full rounded-lg border border-brand-line bg-brand-wash p-8 sm:p-10">
-              <h3 className="font-display text-h2 text-ink">Satya Trauma &amp; Maternity Centre</h3>
+              <h3 className="font-display text-h2 font-bold text-ink">
+                Satya Trauma &amp; Maternity Centre
+              </h3>
               <p className="mt-4 flex items-start gap-2.5 text-meta text-ink-muted">
                 <MapPin aria-hidden className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
                 {contactInfo.address}

@@ -92,8 +92,12 @@ export function TopicSections({ groups }: { groups: TopicGroup[] }) {
                   >
                     <div className="grid gap-6 lg:grid-cols-[16rem_1fr] lg:gap-10">
                       <div>
-                        <h3 className="font-display text-h3 text-brand">{topic.name}</h3>
-                        <p className="mt-2 text-meta font-medium text-ink/80">{topic.tagline}</p>
+                        <h3 className="font-display text-h3 font-bold text-brand-deep">
+                          {topic.name}
+                        </h3>
+                        <p className="mt-2 text-meta font-semibold text-lime-ink">
+                          {topic.tagline}
+                        </p>
                       </div>
                       <div className="min-w-0">
                         <p className="measure text-ink-muted">{topic.summary}</p>

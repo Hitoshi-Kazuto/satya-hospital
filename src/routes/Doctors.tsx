@@ -3,7 +3,7 @@ import { ArrowRight, Phone } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { PageHeader } from "@/components/site/PageHeader";
 import { Reveal, stagger } from "@/components/site/Reveal";
-import { DoctorProfile } from "@/components/site/DoctorProfile";
+import { DoctorProfile, doctorGridCell } from "@/components/site/DoctorProfile";
 import { DataBand } from "@/components/site/sections/DataBand";
 import { FeatureBand } from "@/components/site/sections/FeatureBand";
 import { btn } from "@/components/site/buttons";
@@ -27,12 +27,8 @@ function Doctors() {
       {/* Achievements and qualifications now live in the card's own tabs. */}
       <section className="shell band grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {doctors.map((d, i) => (
-          <Reveal key={d.slug} delay={stagger(i, 70)} className="h-full">
-            <DoctorProfile
-              doctor={d}
-              headingLevel="h2"
-              bookLabel={`Book with ${d.name.split(" ")[1]}`}
-            />
+          <Reveal key={d.slug} delay={stagger(i, 70)} className={doctorGridCell}>
+            <DoctorProfile doctor={d} headingLevel="h2" />
           </Reveal>
         ))}
       </section>

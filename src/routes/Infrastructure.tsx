@@ -65,7 +65,7 @@ function Infrastructure() {
               <Reveal key={title} delay={stagger(i)}>
                 <div className="border-t border-brand-line pt-5">
                   <Icon aria-hidden className="h-5 w-5 text-brand" />
-                  <dt className="mt-3 font-display text-h4 text-ink">{title}</dt>
+                  <dt className="mt-3 font-display text-h4 font-bold text-brand-deep">{title}</dt>
                   <dd className="mt-1.5 text-meta text-ink-muted">{desc}</dd>
                 </div>
               </Reveal>

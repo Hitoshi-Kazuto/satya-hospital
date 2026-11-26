@@ -85,7 +85,9 @@ function Appointment() {
       >
         <div className="mt-8 inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-lg border border-white/20 bg-white/5 px-5 py-3.5 text-meta">
           <span className="text-white/70">Consultation fee:</span>
-          <span className="tabular font-display text-h3 text-white">₹{CONSULTATION_FEE}</span>
+          <span className="tabular font-display text-h3 font-bold text-white">
+            ₹{CONSULTATION_FEE}
+          </span>
           <span aria-hidden className="text-white/40">
             ·
           </span>
@@ -99,7 +101,7 @@ function Appointment() {
             <span className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-brand-tint text-brand">
               <Check aria-hidden className="h-8 w-8" />
             </span>
-            <h2 className="mt-5 font-display text-h2 text-ink">Appointment confirmed</h2>
+            <h2 className="mt-5 font-display text-h2 font-bold text-ink">Appointment confirmed</h2>
             <p className="measure-tight mx-auto mt-3 text-meta text-ink-muted">
               Your appointment ID is{" "}
               <span className="tabular font-semibold text-brand">{submitted}</span>. We've sent

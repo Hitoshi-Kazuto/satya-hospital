@@ -39,10 +39,10 @@ function Orthopedics() {
           <Reveal>
             <SectionHeading title="Meet Your Orthopaedic Consultants" />
           </Reveal>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-6">
             {orthoDoctors.map((d, i) => (
-              <Reveal key={d.slug} delay={i * 70} className="h-full">
-                <DoctorProfile doctor={d} />
+              <Reveal key={d.slug} delay={i * 70}>
+                <DoctorProfile doctor={d} layout="horizontal" />
               </Reveal>
             ))}
           </div>
@@ -67,7 +67,9 @@ function Orthopedics() {
         }
         aside={
           <div className="rounded-lg border border-white/15 bg-white/5 p-8">
-            <h2 className="font-display text-h3 text-white">Common conditions we treat</h2>
+            <h2 className="font-display text-h3 font-bold text-white">
+              Common conditions we treat
+            </h2>
             <ul className="mt-5 flex flex-wrap gap-2">
               {allTopics.map((t) => (
                 <li key={t.slug}>

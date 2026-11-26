@@ -45,10 +45,11 @@ export function IndexList({
 
         const body = (
           <>
-            <span className="flex items-baseline gap-3">
+            <span className="flex items-center gap-3">
+              <span aria-hidden className="h-5 w-1 shrink-0 rounded-full bg-lime" />
               <span
                 className={cn(
-                  "font-display text-h4 text-ink transition-colors duration-150",
+                  "font-display text-h4 font-bold text-brand-deep transition-colors duration-150",
                   interactive && "group-hover:text-brand",
                 )}
               >
@@ -56,7 +57,9 @@ export function IndexList({
               </span>
             </span>
             {item.desc && (
-              <span className="mt-1 block text-meta text-ink-muted sm:mt-0">{item.desc}</span>
+              <span className="mt-1 block pl-4 text-meta text-ink-muted sm:mt-0 sm:pl-0">
+                {item.desc}
+              </span>
             )}
             {interactive && (
               <span className="hidden shrink-0 items-center gap-1.5 self-center text-meta font-semibold text-brand opacity-0 transition-opacity duration-150 group-hover:opacity-100 sm:flex">
@@ -71,7 +74,7 @@ export function IndexList({
         );
 
         const rowClass =
-          "grid min-h-[3.75rem] items-baseline gap-x-6 py-4 sm:grid-cols-[minmax(0,15rem)_1fr_auto] sm:py-5";
+          "grid min-h-[3.75rem] items-baseline gap-x-6 py-4 sm:grid-cols-[minmax(0,17rem)_1fr_auto] sm:py-5";
 
         return (
           <li key={item.name} className="border-b border-brand-line">

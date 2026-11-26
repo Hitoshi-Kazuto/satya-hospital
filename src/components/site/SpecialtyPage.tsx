@@ -75,7 +75,7 @@ export function SpecialtyPage({
         }
         aside={
           <div className="rounded-lg border border-white/15 bg-white/5 p-8">
-            <h2 className="font-display text-h3 text-white">Need help deciding?</h2>
+            <h2 className="font-display text-h3 font-bold text-white">Need help deciding?</h2>
             <p className="mt-3 text-meta text-white/75">
               Our reception team can guide you to the right department and confirm the first
               available appointment time.
