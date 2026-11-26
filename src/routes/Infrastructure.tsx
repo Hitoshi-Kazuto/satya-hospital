@@ -20,9 +20,39 @@ import infra2 from "@/assets/infra-2.webp";
 import infra3 from "@/assets/infra-3.webp";
 import infra4 from "@/assets/infra-4.webp";
 import infra5 from "@/assets/infra-5.webp";
+import infra6 from "@/assets/infra-6.webp";
+import infra7 from "@/assets/infra-7.webp";
+import infra8 from "@/assets/infra-8.webp";
+import infra10 from "@/assets/infra-10.webp";
+import infra11 from "@/assets/infra-11.webp";
+import infra12 from "@/assets/infra-12.webp";
+import infra13 from "@/assets/infra-13.webp";
+import infra14 from "@/assets/infra-14.webp";
 
 const theatres = [facOt, ot1, ot2, ot3, ot4, ot5, ot6, ot7];
-const infraImages = [infra1, infra2, infra3, infra4, infra5];
+/*
+ * Order: the lead photo, then the newer set (6–14), then the original 2–5.
+ * infra-9.png is a byte-identical copy of infra-8.png, so it is left out
+ * until it is replaced with the intended photo.
+ *
+ * The grid is sized for 13 photos: the lead tile takes four cells at lg
+ * (2×2) and a full row at md, so every row closes evenly at each breakpoint.
+ */
+const infraImages = [
+  infra1,
+  infra6,
+  infra7,
+  infra8,
+  infra10,
+  infra11,
+  infra12,
+  infra13,
+  infra14,
+  infra2,
+  infra3,
+  infra4,
+  infra5,
+];
 
 function Infrastructure() {
   return (
@@ -34,20 +64,18 @@ function Infrastructure() {
       />
 
       <section className="band-tight">
-        {/* Five across from md. On narrow screens the odd one out runs the
-            full width as a banner rather than sitting alone in a half-row. */}
-        <div className="shell grid grid-cols-2 gap-4 md:grid-cols-5">
+        <div className="shell grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
           {infraImages.map((src, i) => (
             <img
-              key={i}
+              key={src}
               src={src}
               alt="Satya Hospital infrastructure"
-              loading="lazy"
+              loading={i === 0 ? "eager" : "lazy"}
               decoding="async"
               className={cn(
-                "w-full rounded-lg object-cover shadow-card",
-                i === infraImages.length - 1
-                  ? "col-span-2 aspect-[16/9] md:col-span-1 md:aspect-[4/5]"
+                "h-full w-full rounded-lg object-cover shadow-card",
+                i === 0
+                  ? "col-span-2 aspect-[16/9] md:col-span-3 lg:col-span-2 lg:row-span-2 lg:aspect-auto"
                   : "aspect-[4/5]",
               )}
             />
